@@ -373,15 +373,38 @@ keywordstyle=\fontfamily{lmtt}\bfseries
 % Если \url{github.com} не открывается, можно заменить его на \url{gitlab.com}.
 
 
-\section{Множества}
+\section{Картинки на плоскости}
 
 \begin{leftbar}
-$\Span(v_1, v_2, v_3) = \{x_1 v_1 + x_2 v_2 + x_3 v_3 \mid x_1 \in \RR, x_2 \in \RR, x_3 \in \RR \}$
-
-$\cone(v_1, v_2, v_3) = \{x_1 v_1 + x_2 v_2 + x_3 v_3 \mid x_1 \geq 0, x_2 \geq 0, x_3 \geq 0 \}$
-
-$\Hull(v_1, v_2, v_3) = \Convex(v_1, v_2, v_3) = \{x_1 v_1 + x_2 v_2 + x_3 v_3 \mid x_1 \geq 0, x_2 \geq 0, x_3 \geq 0, \sum x_i = 1 \}$
+\noindent
+Линейная оболочка (linear span):
+\[
+  \Span(v_1, v_2, v_3) = \{x_1 v_1 + x_2 v_2 + x_3 v_3 \mid x_1 \in \RR, x_2 \in \RR, x_3 \in \RR \}
+\]
+Конус (cone):
+\[
+  \cone(v_1, v_2, v_3) = \{x_1 v_1 + x_2 v_2 + x_3 v_3 \mid x_1 \geq 0, x_2 \geq 0, x_3 \geq 0 \}
+\]
+Выпуклая линейная оболочка (convex linear hull):
+\[
+  \Hull(v_1, v_2, v_3) = \Convex(v_1, v_2, v_3) = \left\{x_1 v_1 + x_2 v_2 + x_3 v_3 \mid x_1 \geq 0, x_2 \geq 0, x_3 \geq 0, \sum x_i = 1 \right\}
+\]
 \end{leftbar}
+
+
+\begin{problem}
+  Рассмотрим точки на плоскости, $A = (0, 0)$, $B = (5, 3)$ и $C = (5, -3)$.
+  
+  \begin{enumerate}
+    \item Нарисуйте точки $0.5 B + 0.5 C$, $0.9 A + 0.1 B$, $3 B - 2 C$.
+    \item Нарисуйте точки $\frac{1}{3}A + \frac{1}{3}B + \frac{1}{3}C$, $0.1 A + 0.45 B + 0.45 C$, $0.9A + 0.05B + 0.05C$.
+  \end{enumerate}
+  
+  \begin{sol}
+  
+  \end{sol}
+  \end{problem}
+  
 
 
 \begin{problem}
@@ -392,7 +415,7 @@ $\Hull(v_1, v_2, v_3) = \Convex(v_1, v_2, v_3) = \{x_1 v_1 + x_2 v_2 + x_3 v_3 \
   \item Нарисуйте $\cone(A)$, $\cone(A, B)$, $\cone(A, B, C)$.
   \item Нарисуйте $\Span(A)$, $\Span(A, B)$.
   \item Нарисуйте $A + \Span(B)$, $\cone(A) + \cone(B)$.
-  \item Нарисуйте $\hull(A, B) + \cone(C)$, $\hull(A) + \cone(B, C)$, $\hull(A, B, C) + \cone(B, C)$.
+  \item Нарисуйте $\hull(A, B) + \cone(C)$, $\hull(A) + \cone(B, C)$, $\hull(A, C) + \cone(B, C)$.
 \end{enumerate}
 
 \begin{sol}
@@ -417,7 +440,59 @@ $\Hull(v_1, v_2, v_3) = \Convex(v_1, v_2, v_3) = \{x_1 v_1 + x_2 v_2 + x_3 v_3 \
 
 \end{sol}
 \end{problem}
+
+\begin{problem}
+\begin{enumerate}
+  \item Нарисуйте семейство прямых $a x_1 + 5x_2 = 10$ на плоскости $(x_1, x_2)$.
+  \item Нарисуйте семейство прямых $2 x_1 + x_2 = d$ на плоскости $(x_1, x_2)$.
+\end{enumerate}
   
+\begin{sol}
+    
+\end{sol}
+\end{problem}
+  
+
+
+
+
+
+\section{Оптимизация на плоскости}
+
+\begin{problem}
+  
+\begin{sol}
+  
+\end{sol}
+\end{problem}
+  
+\subsection{Оптимизация на плоскости с параметром}
+
+
+
+\begin{problem}
+Решите задачу линейного программирования при всех значениях $c$:  
+\begin{gather}
+  cx_1 + x_2 \to \max \\
+  2x_1 + 3x_2 \leq 6 \\
+  x_1 \geq 0 \\
+  x_2 \geq 0 
+\end{gather}
+\begin{sol}
+\end{sol}
+\end{problem}
+  
+\begin{problem}
+  Решите задачу линейного программирования при всех значениях $a$:  
+  \begin{gather}
+    x_1 + 3x_2 \to \max \\
+    2x_1 + ax_2 \leq 6 \\
+    x_1 \geq 0 \\
+    x_2 \geq 0 
+  \end{gather}
+  \begin{sol}
+  \end{sol}
+  \end{problem}
   
 
 
