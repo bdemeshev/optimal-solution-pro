@@ -215,6 +215,8 @@ keywordstyle=\fontfamily{lmtt}\bfseries
 \DeclareMathOperator{\Med}{Med}
 
 
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\row}{row}
 
 
 \let\P\relax
@@ -529,6 +531,17 @@ keywordstyle=\fontfamily{lmtt}\bfseries
 
 \section{Симплекс-метод}
 
+
+\begin{leftbar}
+  \noindent
+  Решение $x$ системы $Ax = b$ называется \textit{допустимым}, если все $x_i \geq 0$. 
+
+  \noindent
+  Решение $x$ системы $Ax = b$ называется \textit{базисным}, если столбцы $\col_i A$ при $x_i \neq 0$ линейно независимы.
+  \end{leftbar}
+  
+
+
 \begin{problem}
     Рассмотрим систему уравнений
     \[
@@ -593,7 +606,7 @@ keywordstyle=\fontfamily{lmtt}\bfseries
 
 
 \begin{problem}
-  Найдите хотя бы одно базисное допустимое решение системы
+  Рассмотрим задачу линейного программирования в канонической форме:
   \[
   \begin{cases}
     2x_1 + 5x_2 + x_3 = 8 \\
@@ -602,15 +615,23 @@ keywordstyle=\fontfamily{lmtt}\bfseries
     x_1 \geq 0, x_2 \geq 0, x_3 \geq 0, x_4 \geq 0, x_5 \geq 0. 
   \end{cases}  
   \]
+  \begin{enumerate}
+    \item Найдите хотя бы одно базисное допустимое решение системы.
+    \item Найдите все базисные допустимые решения системы.
+  \end{enumerate}
 
 \begin{sol}
-  $x = (0, 0, 8, 15, 11)$
+  \begin{enumerate}
+    \item $x = (0, 0, 8, 15, 11)$
+    \item 
+  \end{enumerate}
+  
 \end{sol}
 \end{problem}
 
 
 \begin{problem}
-  Найдите хотя бы одно базисное допустимое решение системы
+  Рассмотрим задачу линейного программирования в канонической форме:
   \[
   \begin{cases}
     2x_1 + 5x_2 - x_3 = 8 \\
@@ -619,10 +640,19 @@ keywordstyle=\fontfamily{lmtt}\bfseries
     x_1 \geq 0, x_2 \geq 0, x_3 \geq 0, x_4 \geq 0, x_5 \geq 0. 
   \end{cases}  
   \]
+  \begin{enumerate}
+    \item Найдите хотя бы одно базисное допустимое решение системы.
+    \item Найдите все базисные допустимые решения системы.
+  \end{enumerate}
+
 
 \begin{sol}
-  Решение $x = (0, 0, -8, 15, 11)$ является базисным и не является допустимым.
+  \begin{enumerate}
+    \item Решение $x = (0, 0, -8, 15, 11)$ является базисным и не является допустимым.
   Подойдёт, например, $x = (4, 0, 0, 11, 15)$.
+  \item 
+\end{enumerate}
+
 \end{sol}
 \end{problem}
 
