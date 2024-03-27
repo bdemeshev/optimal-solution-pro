@@ -505,25 +505,29 @@ keywordstyle=\fontfamily{lmtt}\bfseries
 
 \begin{problem}
 Решите задачу линейного программирования при всех значениях $c$:  
-\begin{gather}
+\[
+\begin{cases}
   cx_1 + x_2 \to \max \\
   2x_1 + 3x_2 \leq 6 \\
   x_1 \geq 0 \\
   x_2 \geq 0 
-\end{gather}
+\end{cases}
+\]
 \begin{sol}
 \end{sol}
 \end{problem}
   
 \begin{problem}
   Решите задачу линейного программирования при всех значениях $a$:  
-  \begin{gather}
-    x_1 + 3x_2 \to \max \\
+  \[
+    \begin{cases}
+        x_1 + 3x_2 \to \max \\
     2x_1 + ax_2 \leq 6 \\
     x_1 \geq 0 \\
     x_2 \geq 0 
-  \end{gather}
-  \begin{sol}
+  \end{cases}
+  \]
+    \begin{sol}
   \end{sol}
   \end{problem}
   
@@ -1014,7 +1018,32 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
 
   
   \begin{sol}
+
+    \begin{tabular}{cccccc}
+      \toprule 
+      & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $b$ \\
+      \midrule 
+    $x_1$ & $1$ & $0$ & $1/2$ & $-1/2$ & $1/2$ \\ 
+    $x_2$ & $0$ & $1$ & $1/2$ & $1/2^*$ & $1/2$ \\ 
+    \midrule
+    $\max z$ & $0$ & $0$ & $-1$ & $0$ & $-z-1$ \\
+    \bottomrule
+    \end{tabular}, \quad $x = (1/2, 1/2, 0, 0)$, $z=1$.
     
+    \begin{tabular}{cccccc}
+      \toprule 
+      & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $b$ \\
+      \midrule 
+    $x_1$ & $1$ & $1$ & $1$ & $0$ & $1$ \\ 
+    $x_4$ & $0$ & $2^*$ & $1$ & $1$ & $1$ \\ 
+    \midrule
+    $\max z$ & $0$ & $0$ & $-1$ & $0$ & $-z-1$ \\
+    \bottomrule
+    \end{tabular}, \quad $x = (1, 0, 0, 0)$, $z=1$.
+
+    
+    Оптимум: $[A, B] = \hull(A, B)$, $A = (1/2, 1/2)$, $B = (1, 0)$.
+
   \end{sol}
 \end{problem}
 
