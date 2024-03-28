@@ -574,7 +574,7 @@ keywordstyle=\fontfamily{lmtt}\bfseries
   $x_c = (1,0,6,8)$ & да & нет & да \\
   $x_d=(1,-9,33, -1)$ & да & нет & нет \\
   $x_e=(0,-9,35,0)$ & да & да & нет \\
-  \bottomrule
+  %\bottomrule
   \end{tabular}
     
 \end{sol}
@@ -605,7 +605,7 @@ keywordstyle=\fontfamily{lmtt}\bfseries
     $x_c = (1,0,9,9)$ & да & нет & да \\
     $x_d=(6,-1,7, 0)$ & да & нет & нет \\
     $x_e=(0,11,-23,0)$ & да & да & нет \\
-    \bottomrule
+    %\bottomrule
   \end{tabular}
 \end{sol}
 \end{problem}
@@ -688,38 +688,38 @@ keywordstyle=\fontfamily{lmtt}\bfseries
 \begin{sol}
 
 \begin{tabular}{cccccc}
-  \toprule 
+  %\toprule 
   & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $b$ \\
   \midrule 
 $x_3$ & $1$ & $3$ & $1$ & $0$ & $9$ \\ 
-$x_4$ & $2$ & $1$ & $0$ & $1$ & $8$ \\ 
+$x_4$ & $2^*$ & $1$ & $0$ & $1$ & $8$ \\ 
 \midrule
-$z$ & $1$ & $1$ & $0$ & $0$ & $0$ \\
-\bottomrule
+$\max z$ & $1$ & $1$ & $0$ & $0$ & $z$ \\
+%\bottomrule
 \end{tabular}, \quad $x = (0, 0, 9, 8)$, $z=0$.
 
 
 \begin{tabular}{cccccc}
-  \toprule 
+  %\toprule 
   & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $b$ \\
   \midrule 
-$x_3$ & $0$ & $5/2$ & $1$ & $-1/2$ & $5$ \\ 
+$x_3$ & $0$ & $5/2^*$ & $1$ & $-1/2$ & $5$ \\ 
 $x_1$ & $1$ & $1/2$ & $0$ & $1/2$ & $4$ \\ 
 \midrule
-$z$ & $0$ & $1/2$ & $0$ & $-1/2$ & $-4$ \\
-\bottomrule
+$\max z$ & $0$ & $1/2$ & $0$ & $-1/2$ & $z-4$ \\
+%\bottomrule
 \end{tabular}, \quad $x = (4, 0, 5, 0)$, $z=4$.
 
 
 \begin{tabular}{cccccc}
-  \toprule 
+  %\toprule 
   & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $b$ \\
   \midrule 
 $x_2$ & $0$ & $1$ & $2/5$ & $-1/5$ & $2$ \\ 
 $x_1$ & $1$ & $0$ & $-1/5$ & $3/5$ & $3$ \\ 
 \midrule
-$z$ & $0$ & $0$ & $-1/5$ & $-2/5$ & $5$ \\
-\bottomrule
+$\max z$ & $0$ & $0$ & $-1/5$ & $-2/5$ & $z-5$ \\
+%\bottomrule
 \end{tabular}, \quad $x = (3, 2, 0, 0)$, $z=5$.
 
 
@@ -750,26 +750,26 @@ $z$ & $0$ & $0$ & $-1/5$ & $-2/5$ & $5$ \\
 \begin{sol}
 
 \begin{tabular}{cccccc|c}
-  %\toprule 
+  %%\toprule 
   & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $b$ \\
   \midrule 
 $x_4$ & $1$ & $1$ & $2$ & $1$ & $0$ & $10$ \\ 
 $x_5$ & $2$ & $1$ & $1$ & $0$ & $1$ & $5$ \\ 
 \midrule
 $\max z$ & $1$ & $2$ & $3$ & $0$ & $0$ & $z$ \\
-%\bottomrule
+%%\bottomrule
 \end{tabular}, \quad $x = (0, 0, 0, 10, 5)$, $z=0$.
 
 
 \begin{tabular}{cccccc|c}
-  %\toprule 
+  %%\toprule 
   & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $b$ \\
   \midrule 
 $x_4$ & $-3$ & $-1$ & $0$ & $1$ & $-2$ & $0$ \\ 
 $x_3$ & $2$ & $1$ & $1$ & $0$ & $1$ & $5$ \\ 
 \midrule
 $\max z$ & $-5$ & $-1$ & $0$ & $0$ & $-3$ & $z-15$ \\
-%\bottomrule
+%%\bottomrule
 \end{tabular}, \quad $x = (0, 0, 5, 10, 0)$, $z=15$.
 
 
@@ -799,26 +799,26 @@ $\max z$ & $-5$ & $-1$ & $0$ & $0$ & $-3$ & $z-15$ \\
 \begin{sol}
 
 \begin{tabular}{cccccc}
-  \toprule 
+  %\toprule 
   & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $b$ \\
   \midrule 
 $x_3$ & $1$ & $1$ & $1$ & $0$ & $10$ \\ 
 $x_4$ & $2$ & $1$ & $0$ & $1$ & $5$ \\ 
 \midrule
 $\min z$ & $-2$ & $3$ & $0$ & $0$ & $-z$ \\
-\bottomrule
+%\bottomrule
 \end{tabular}, \quad $x = (0, 0, 10, 5)$, $z=0$.
 
 
 \begin{tabular}{cccccc}
-  \toprule 
+  %\toprule 
   & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $b$ \\
   \midrule 
 $x_3$ & $-1$ & $0$ & $1$ & $-1$ & $5$ \\ 
 $x_2$ & $2$ & $1$ & $0$ & $1$ & $5$ \\ 
 \midrule
 $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
-\bottomrule
+%\bottomrule
 \end{tabular}, \quad $x = (0, 5, 5, 0)$, $z=-15$.
 
 \end{sol}
@@ -847,25 +847,25 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
 
 \begin{sol}
   \begin{tabular}{ccccccc}
-    \toprule 
+    %\toprule 
     & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $b$ \\
     \midrule 
   $x_4$ & $2$ & $1^*$ & $3$ & $1$ & $0$ & $10$ \\ 
   $x_5$ & $1$ & $-1$ & $1$ & $0$ & $1$ & $6$ \\ 
   \midrule
   $\max z$ & $1$ & $1$ & $1$ & $0$ & $0$ & $z$ \\
-  \bottomrule
+  %\bottomrule
   \end{tabular}, \quad $x = (0, 0, 0, 10, 6)$, $z=0$.
 
   \begin{tabular}{ccccccc}
-    \toprule 
+    %\toprule 
     & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $b$ \\
     \midrule 
     $x_2$ & $2$ & $1$ & $3$ & $1$ & $0$ & $10$ \\ 
     $x_5$ & $3$ & $0$ & $4$ & $1$ & $1$ & $16$ \\ 
   \midrule
   $\max z$ & $-1$ & $0$ & $-2$ & $-1$ & $0$ & $z - 10$ \\
-  \bottomrule
+  %\bottomrule
   \end{tabular}, \quad $x = (0, 10, 0, 0, 16)$, $z=10$.
   
 \end{sol}
@@ -893,25 +893,25 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
 \begin{sol}
 
   \begin{tabular}{ccccccc}
-    \toprule 
+    %\toprule 
     & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $b$ \\
     \midrule 
   $x_4$ & $3$ & $2$ & $1$ & $1$ & $0$ & $10$ \\ 
   $x_5$ & $1$ & $1^*$ & $-1$ & $0$ & $1$ & $5$ \\ 
   \midrule
   $\min z$ & $-1$ & $2$ & $-3$ & $0$ & $0$ & $-z$ \\
-  \bottomrule
+  %\bottomrule
   \end{tabular}, \quad $x = (0, 0, 0, 10, 5)$, $z=0$.
 
   \begin{tabular}{ccccccc}
-    \toprule 
+    %\toprule 
     & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $b$ \\
     \midrule 
     $x_4$ & $1$ & $0$ & $3$ & $1$ & $-2$ & $0$ \\ 
     $x_2$ & $1$ & $1$ & $-1$ & $0$ & $1$ & $5$ \\ 
   \midrule
   $\min z$ & $-3$ & $0$ & $-1$ & $0$ & $-2$ & $-z-10$ \\
-  \bottomrule
+  %\bottomrule
   \end{tabular}, \quad $x = (0, 5, 0, 0, 0)$, $z=-10$.
 
 \end{sol}
@@ -1020,25 +1020,23 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
   \begin{sol}
 
     \begin{tabular}{cccccc}
-      \toprule 
+      %\toprule 
       & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $b$ \\
       \midrule 
     $x_1$ & $1$ & $0$ & $1/2$ & $-1/2$ & $1/2$ \\ 
     $x_2$ & $0$ & $1$ & $1/2$ & $1/2^*$ & $1/2$ \\ 
     \midrule
     $\max z$ & $0$ & $0$ & $-1$ & $0$ & $-z-1$ \\
-    \bottomrule
+    %\bottomrule
     \end{tabular}, \quad $x = (1/2, 1/2, 0, 0)$, $z=1$.
     
     \begin{tabular}{cccccc}
-      \toprule 
       & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $b$ \\
       \midrule 
     $x_1$ & $1$ & $1$ & $1$ & $0$ & $1$ \\ 
     $x_4$ & $0$ & $2^*$ & $1$ & $1$ & $1$ \\ 
     \midrule
     $\max z$ & $0$ & $0$ & $-1$ & $0$ & $-z-1$ \\
-    \bottomrule
     \end{tabular}, \quad $x = (1, 0, 0, 0)$, $z=1$.
 
     
@@ -1069,7 +1067,91 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
   \begin{sol}
     
   \end{sol}
+
 \end{problem}
+
+\begin{problem}
+
+  Рассмотрим симплекс-табличку
+
+  \begin{tabular}{cccccc}
+    & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $b$ \\
+    \midrule 
+  $x_1$ & $1$ & $0$ & $-1$ & $3$ & $5$ \\ 
+  $x_2$ & $0$ & $1$ & $-2$ & $7$ & $6$ \\ 
+  \midrule
+  $\min z$ & $0$ & $0$ & $0$ & $-3$ & $12-z$ \\
+  \end{tabular}
+
+  \begin{enumerate}
+    \item Выпишите все решения в параметрическом виде.
+    \item Выпишите все решения, используя выпуклую линейную оболочки и конус. 
+  \end{enumerate}
+
+  
+  \begin{sol}
+    
+  \end{sol}
+
+\end{problem}
+
+
+
+
+\begin{problem}
+
+  Рассмотрим симплекс-табличку
+
+  \begin{tabular}{cccccc}
+    & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $b$ \\
+    \midrule 
+  $x_1$ & $1$ & $0$ & $-1$ & $3$ & $5$ \\ 
+  $x_2$ & $0$ & $1$ & $3$ & $7$ & $6$ \\ 
+  \midrule
+  $\max z$ & $0$ & $0$ & $0$ & $-3$ & $16 + z$ \\
+  \end{tabular}
+
+  \begin{enumerate}
+    \item Выпишите все решения в параметрическом виде.
+    \item Выпишите все решения, используя выпуклую линейную оболочки и конус. 
+  \end{enumerate}
+
+  
+  \begin{sol}
+    
+  \end{sol}
+
+\end{problem}
+
+
+
+\begin{problem}
+
+  Рассмотрим симплекс-табличку
+
+  \begin{tabular}{cccccc}
+    & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $b$ \\
+    \midrule 
+  $x_1$ & $1$ & $0$ & $-1$ & $-2$ & $5$ \\ 
+  $x_2$ & $0$ & $1$ & $3$ & $-1$ & $6$ \\ 
+  \midrule
+  $\min z$ & $0$ & $0$ & $0$ & $0$ & $20-z$ \\
+  \end{tabular}
+
+  \begin{enumerate}
+    \item Выпишите все решения в параметрическом виде.
+    \item Выпишите все решения, используя выпуклую линейную оболочки и конус. 
+  \end{enumerate}
+
+  
+  \begin{sol}
+    
+  \end{sol}
+
+\end{problem}
+
+
+
 
 
 
