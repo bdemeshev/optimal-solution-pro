@@ -1301,23 +1301,24 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
 
 \begin{leftbar}
   \noindent
-  Двойственные задачи:
+  Двойственные задачи в каноническом виде:
   \begin{align*}
     &z = c_1 x_1 + c_2 x_2 + c_3 x_3 \to \min & \leftrightarrow && u = b_1 y_1 + b_2 y_2 \to \max & \\
     &a_{11} x_1 + a_{12} x_2 + a_{13} x_3 \geq b_1 & \leftrightarrow && y_1 \geq 0 &\\
-    &a_{21} x_1 + a_{22} x_2 + a_{23} x_3  =  b_2 & \leftrightarrow && y_1 \in \RR &\\
-    &x_1 \geq 0 & \leftrightarrow && a_{11} y_1 + a_{21} y_2 \leq c_1 &\\
-    &x_2  \in \RR & \leftrightarrow && a_{12} y_1 + a_{22} y_2 = c_2 & \\
-    &x_3 \geq 0 & \leftrightarrow && a_{13} y_1 + a_{23} y_2 \leq c_3 &\\
+    &a_{21} x_1 + a_{22} x_2 + a_{23} x_3  \geq  b_2 & \leftrightarrow && y_2 \geq 0 &\\
+    &x_1 \geq 0 & \leftrightarrow && a_{11} y_1 + a_{21} y_2 \leq c_1 & \\
+    &x_2 \geq 0 & \leftrightarrow && a_{12} y_1 + a_{22} y_2 \leq c_2 & \\
+    &x_3 \geq 0 & \leftrightarrow && a_{13} y_1 + a_{23} y_2 \leq c_3 & \\
+  \end{align*}
+  Двойственность между равенствами и переменными с произвольными значениями:
+  \begin{align*}
+    &a_{11} x_1 + a_{12} x_2 + a_{13} x_3 = b_1 & \leftrightarrow && y_1 \in \RR &\\
+    &x_2 \in \RR & \leftrightarrow && a_{12} y_1 + a_{22} y_2 = c_2 & \\
   \end{align*}
   Соответствие в оптимальной точке:
   \begin{align*}
-    y_j^* \cdot (b_j - a_{j1} x_1^* - a_{j2} x_2^* - a_{j3} x_3^*) = 0: \\
-    && y_j^* > 0 & \Rightarrow & a_{j1} x_1^* + a_{j2} x_2^* + a_{j3} x_3^* = b_j  \\
-    && a_{j1} x_1^* + a_{j2} x_2^* + a_{j3} x_3^* > b_j & \Rightarrow & y_j^* = 0 \\
-    x_i^* \cdot (c_i - a_{1i} y_1^* - a_{2i} y_2^*) = 0: \\
-    && x_i^* > 0 & \Rightarrow & a_{1i} y_1^* + a_{2i} y_2^*  = c_i  \\
-    && a_{1i} y_1^* + a_{2i} y_2^*  < c_i & \Rightarrow & x_i^* = 0 \\
+    y_j^* \neq 0 & \Rightarrow & a_{j1} x_1^* + a_{j2} x_2^* + a_{j3} x_3^* = b_j  \\
+    a_{1i} y_1^* + a_{2i} y_2^* \neq c_i & \Rightarrow & x_i^* = 0 \\
   \end{align*}  
 \end{leftbar}
 
@@ -1391,7 +1392,8 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
     \end{cases}  
     \]
     \item $y_1 = 0$, $y_2 = 1/2$, $u = 5$
-    \item 
+    \item $x_1 = 0$, $x_2 = 0$, $x_3 = 5 + x_4$, $x_4 \geq 0$, $z=5$.
+    Можно записать ответ в виде $x \in A + \cone(u)$, где $A = (0, 0, 5, 0)$, $u = (0, 0, 1, 1)$.
   \end{enumerate}
 
 \end{sol}
@@ -1404,7 +1406,7 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
     \[
       \begin{cases}
       x_1 + 3x_2  + x_3 - x_4 \to \min \\
-      x_1 + x_2 + x_3 + 3x_4 \leq 6 \\
+      x_1 + x_2 + x_3 + 3x_4 \geq 6 \\
       x_1 - x_2 + 2x_3 -2x_4 = 10 \\
       x_1 \geq 0, x_3 \geq 0, x_4 \geq 0 \\ 
     \end{cases}
@@ -1430,12 +1432,52 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
         y_1 \geq 0 \\ 
       \end{cases}  
       \]
-      \item 
-      \item 
+      \item Пустое допустимое множество. 
+      \item Неограниченная задача. 
     \end{enumerate}
   
   \end{sol}
   \end{problem}
+  
+
+
+  \begin{problem}
+    Рассмотрим задачу линейного программирования
+      \[
+        \begin{cases}
+        x_1 + 3x_2  + x_3 - x_4 \to \min \\
+        x_1 + x_2 + x_3 + 3x_4 = 6 \\
+        x_1 - x_2 + 2x_3 -2x_4 = 10 \\
+        x_1 \geq 0, x_3 \geq 0, x_4 \geq 0 \\ 
+      \end{cases}
+      \]
+      
+      \begin{enumerate}
+        \item Выпишите двойственную задачу. 
+        \item Решите двойственную задачу.
+        \item Найдите решение исходной задачи.
+      \end{enumerate}
+      
+      
+    \begin{sol}
+      \begin{enumerate}
+        \item 
+        \[
+        \begin{cases}
+          6y_1 + 10 y_2 \to \max \\ 
+          y_1 + y_2 \leq 1 \\
+          y_1 - y_2 = 3 \\
+          y_1 + 2y_2 \leq 1 \\
+          3y_1 - 2y_2 \leq -1 \\
+        \end{cases}  
+        \]
+        \item $y_1 = -7$, $y_2 = -10$, $u = -142$
+        \item $x_1 = 0$, $x_2= -42$, $x_3 = 0$, $x_4 = 16$, $z = -142$
+      \end{enumerate}
+    
+    \end{sol}
+    \end{problem}
+    
   
 
 
