@@ -1298,6 +1298,29 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
 
 \section{Двойственность}
 
+
+\begin{leftbar}
+  \noindent
+  Двойственные задачи:
+  \begin{align*}
+    &z = c_1 x_1 + c_2 x_2 + c_3 x_3 \to \min & \leftrightarrow && u = b_1 y_1 + b_2 y_2 \to \max & \\
+    &a_{11} x_1 + a_{12} x_2 + a_{13} x_3 \geq b_1 & \leftrightarrow && y_1 \geq 0 &\\
+    &a_{21} x_1 + a_{22} x_2 + a_{23} x_3  =  b_2 & \leftrightarrow && y_1 \in \RR &\\
+    &x_1 \geq 0 & \leftrightarrow && a_{11} y_1 + a_{21} y_2 \leq c_1 &\\
+    &x_2  \in \RR & \leftrightarrow && a_{12} y_1 + a_{22} y_2 = c_2 & \\
+    &x_3 \geq 0 & \leftrightarrow && a_{13} y_1 + a_{23} y_2 \leq c_3 &\\
+  \end{align*}
+  Соответствие в оптимальной точке:
+  \begin{align*}
+    y_j^* \cdot (b_j - a_{j1} x_1^* - a_{j2} x_2^* - a_{j3} x_3^*) = 0: \\
+    && y_j^* > 0 & \Rightarrow & a_{j1} x_1^* + a_{j2} x_2^* + a_{j3} x_3^* = b_j  \\
+    && a_{j1} x_1^* + a_{j2} x_2^* + a_{j3} x_3^* > b_j & \Rightarrow & y_j^* = 0 \\
+    x_i^* \cdot (c_i - a_{1i} y_1^* - a_{2i} y_2^*) = 0: \\
+    && x_i^* > 0 & \Rightarrow & a_{1i} y_1^* + a_{2i} y_2^*  = c_i  \\
+    && a_{1i} y_1^* + a_{2i} y_2^*  < c_i & \Rightarrow & x_i^* = 0 \\
+  \end{align*}  
+\end{leftbar}
+
 \begin{problem}
 Рассмотрим задачу линейного программирования
   \[
@@ -1317,6 +1340,21 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
   
   
   \begin{sol}
+    \begin{enumerate}
+      \item 
+      \[
+      \begin{cases}
+        6y_1 + 10 y_2 \to \min \\ 
+        y_1 + y_2 \geq 1 \\
+        y_1 - y_2 \geq 3 \\
+        y_1 + 2y_2 \geq 1 \\
+        y_1 - 2y_2 \geq -1 \\
+        y_1 \geq 0, y_2 \geq 0 \\ 
+      \end{cases}  
+      \]
+      \item $y_1 = 3$, $y_2 = 0$, $u = 18$
+      \item $x_1 = 0$, $x_2 = 6$, $x_3 = 0$, $x_4 = 0$, $z = 18$
+    \end{enumerate}
   \end{sol}
   \end{problem}
   
@@ -1340,6 +1378,22 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
       
       
 \begin{sol}
+  \begin{enumerate}
+    \item 
+    \[
+    \begin{cases}
+      6y_1 + 10 y_2 \to \max \\ 
+      y_1 + y_2 \leq 1 \\
+      y_1 - y_2 \leq 3 \\
+      y_1 + 2y_2 \leq 1 \\
+      y_1 - 2y_2 \leq -1 \\
+      y_1 \geq 0, y_2 \geq 0 \\ 
+    \end{cases}  
+    \]
+    \item $y_1 = 0$, $y_2 = 1/2$, $u = 5$
+    \item 
+  \end{enumerate}
+
 \end{sol}
 \end{problem}
     
@@ -1364,6 +1418,22 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
     
     
   \begin{sol}
+    \begin{enumerate}
+      \item 
+      \[
+      \begin{cases}
+        6y_1 + 10 y_2 \to \max \\ 
+        y_1 + y_2 \leq 1 \\
+        y_1 - y_2 = 3 \\
+        y_1 + 2y_2 \leq 1 \\
+        3y_1 - 2y_2 \leq -1 \\
+        y_1 \geq 0 \\ 
+      \end{cases}  
+      \]
+      \item 
+      \item 
+    \end{enumerate}
+  
   \end{sol}
   \end{problem}
   
