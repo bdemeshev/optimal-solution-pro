@@ -301,11 +301,15 @@ keywordstyle=\fontfamily{lmtt}\bfseries
 \newcommand{\addtag}[1]{\index{#1}}
 
 \DeclareMathOperator{\Convex}{Convex}
+\DeclareMathOperator{\hull}{\Convex}
 \DeclareMathOperator{\Hull}{Hull}
-\DeclareMathOperator{\hull}{\Hull}
 \DeclareMathOperator{\Span}{Span}
 \DeclareMathOperator{\cone}{Cone}
 
+
+\newcommand{\chinesetext}[1]{\setmainfont{Source Han Sans CN}
+#1
+\setmainfont{Linux Libertine O}}
 
 
 
@@ -317,8 +321,9 @@ keywordstyle=\fontfamily{lmtt}\bfseries
 \title{Заметки к семинарам по методам оптимальных решений}
 \author{\url{https://github.com/bdemeshev/optimal-solution-pro} \\
 зеркало: \url{https://gitlab.com/bdemeshev/optimal-solution-pro}}
-\date{\today \\  皮卡丘乒乓 \\
-\includegraphics[height=10cm]{picachu.jpg}}
+\date{\today \\
+\includegraphics[height=10cm]{picachu.jpg} \\
+\chinesetext{皮卡丘} } % 乒乓
 
 
 %\newtheorem{problem}{Задача}
@@ -374,6 +379,13 @@ keywordstyle=\fontfamily{lmtt}\bfseries
 При везении подсказку, ответ или решение можно найти, кликнув по номеру задачи. 
 
 % Если \url{github.com} не открывается, можно заменить его на \url{gitlab.com}.
+
+Подробная книжка Фергюсона, \cite{ferguson2010lpintro}.
+Слайды к оксфордскому курсу, \cite{law2010lpnotes}.
+
+Обсуждение интуиции за двойственными задачами, \cite{223235}.
+
+
 
 
 \section{Картинки на плоскости}
@@ -488,9 +500,17 @@ keywordstyle=\fontfamily{lmtt}\bfseries
 
 
 
-
-
 \section{Оптимизация на плоскости}
+
+\begin{leftbar}
+\begin{itemize}
+  \item допустимое множество, feasible set,  \chinesetext{可行集}, kěxíng jí;
+  \item допустимая область, feasible region,  \chinesetext{可行域}, kěxíng yù;
+  \item линейное программирование, linear programming, \chinesetext{线性规划}, xiànxìng guīhuà;
+  \item целевая функция, objective function, \chinesetext{目标函数}, mùbiāo hánshù;
+\end{itemize}
+\end{leftbar}
+
 
 \begin{problem}
   
@@ -1030,7 +1050,7 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
     $\min u$ & $0$ & $0$ & $0$ & $0$ & $-1$ & $-u$ \\
 
     %\bottomrule
-    \end{tabular}, неограниченна задача
+    \end{tabular}, неограниченная задача
   
 
 
@@ -1357,6 +1377,12 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
 
 \begin{leftbar}
   \noindent
+  \begin{itemize}
+  \item двойственная задача, dual problem, \chinesetext{对偶问题}, duì'ǒu wèntí;
+  \item двойственность, duality, \chinesetext{对偶}, duì'ǒu;
+  \item условия дополняющей нежёсткости, complementary slackness condition, \chinesetext{互补松弛条件}, hùbǔ sōngchí tiáojiàn;
+  \end{itemize}
+
   Двойственные задачи в стандартной форме:
   \begin{align*}
     &z = c_1 x_1 + c_2 x_2 + c_3 x_3 \to \min & \leftrightarrow && u = b_1 y_1 + b_2 y_2 \to \max & \\
@@ -1366,6 +1392,12 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
     &x_2 \geq 0 & \leftrightarrow && a_{12} y_1 + a_{22} y_2 \leq c_2 & \\
     &x_3 \geq 0 & \leftrightarrow && a_{13} y_1 + a_{23} y_2 \leq c_3 & \\
   \end{align*}
+  Двойственность между равенствами и переменными с произвольными значениями:
+  \begin{align*}
+    &a_{11} x_1 + a_{12} x_2 + a_{13} x_3 = b_1 & \leftrightarrow && y_1 \in \RR &\\
+    &x_2 \in \RR & \leftrightarrow && a_{12} y_1 + a_{22} y_2 = c_2 & \\
+  \end{align*}
+
   Двойственные задачи в стандартной форме с векторами:
   \begin{align*}
     &z = c^T x \to \min & \leftrightarrow && u = b^T y \to \max & \\
@@ -1373,12 +1405,6 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
     &x \geq 0 & \leftrightarrow && A^T y \leq c & \\
   \end{align*}
 
-
-  Двойственность между равенствами и переменными с произвольными значениями:
-  \begin{align*}
-    &a_{11} x_1 + a_{12} x_2 + a_{13} x_3 = b_1 & \leftrightarrow && y_1 \in \RR &\\
-    &x_2 \in \RR & \leftrightarrow && a_{12} y_1 + a_{22} y_2 = c_2 & \\
-  \end{align*}
   Двойственность в оптимальной точке:
   \begin{align*}
     y_j^* \neq 0 \quad \Rightarrow \quad a_{j1} x_1^* + a_{j2} x_2^* + a_{j3} x_3^* = b_j  \\
@@ -1589,8 +1615,96 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
     \end{sol}
     \end{problem}
     
-  
 
+\section{Транспортная задача}
+
+\begin{leftbar}
+  \begin{itemize}
+    \item базисное допустимое решение, basic feasible solution, \chinesetext{基本可行解}, jīběn kěxíng jiě; 
+    \item метод минимального элемента, least-cost rule, \chinesetext{最小元素法}, zuìxiǎo yuánsù fǎ; 
+    \item метод северо-западного угла, northwest corner rule, \chinesetext{西北角法}, xīběi jiǎo fǎ;
+    \item транспортная задача, transportation problem, \chinesetext{运输问题}, yùnshū wèntí;
+  \end{itemize}
+\end{leftbar}
+
+
+\begin{problem}
+  Рассмотрим сбалансированную транспортную задачу
+  \[
+  \begin{cases}
+    \sum_{ij} c_{ij} x_{ij} \to \min \\
+    \sum_j x_{ij} = a_i \text{ для любого } i \\
+    \sum_i x_{ij} = b_j \text{ для любого } j \\
+    \text{все } x_{ij} \geq 0 \\
+  \end{cases}  
+  \]
+
+  \begin{enumerate}
+    \item Может ли измениться оптимальная точка, если каждый элемент матрицы $C$ увеличить в 2 раза?
+    \item Может ли измениться оптимальная точка, если один столбец матрицы $C$ увеличить в 2 раза?
+    \item Может ли измениться оптимальная точка, если одну строку матрицы $C$ увеличить в 2 раза?
+    \item Может ли измениться оптимальная точка, если к каждому элементу матрицы $C$ прибавить 1?
+    \item Может ли измениться оптимальная точка, если в одном столбце матрицы $C$ к каждому элементу прибавить 1?
+    \item Может ли измениться оптимальная точка, если в одной строке матрицы $C$ к каждому элементу прибавить 1?
+  \end{enumerate}
+
+  \begin{sol}
+  
+  \end{sol}
+\end{problem}
+
+
+
+\begin{problem}
+  Рассмотрим сбалансированную транспортную задачу
+  \[
+  \begin{cases}
+    8x_{11} + 5x_{12} + 4x_{13} + 6x_{21} + 7 x_{22} + 3x_{23} \to \min \\
+    x_{11} + x_{12} + x_{13} = 10 \\
+    x_{21} + x_{22} + x_{23} = 20 \\
+    x_{11} + x_{21} = 7 \\
+    x_{12} + x_{22} = 11 \\
+    x_{13} + x_{23} = 12 \\
+    \text{все } x_{ij} \geq 0 \\
+  \end{cases}  
+  \]
+  \begin{enumerate}
+    \item Запишите задачу в виде симплекс-таблицы.
+    \item Запишите задачу в виде транспортной таблицы. 
+    \item Запишите двойственную задачу. 
+    \item Найдите базисное допустимое решение методом северо-западного угла. 
+    \item Найдите базисное допустимое решение методом минимального элемента. 
+    \item Найдите хотя бы одно оптимальное решение. 
+  \end{enumerate}
+
+  \begin{sol}
+  
+  \end{sol}
+\end{problem}
+
+
+\begin{problem}
+  
+  \begin{sol}
+  
+  \end{sol}
+\end{problem}
+
+
+\begin{problem}
+  
+  \begin{sol}
+  
+  \end{sol}
+\end{problem}
+
+
+\begin{problem}
+  
+  \begin{sol}
+  
+  \end{sol}
+\end{problem}
 
 
 
