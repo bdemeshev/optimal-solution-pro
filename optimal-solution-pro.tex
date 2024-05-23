@@ -172,6 +172,20 @@ keywordstyle=\fontfamily{lmtt}\bfseries
 \setlist[enumerate, 1]{label=\asbuk*),ref=\asbuk*} % цифра рядом с enumerate = уровень нумерации
 
 
+% transportation table 
+% https://tex.stackexchange.com/questions/83713/how-to-make-a-transportation-tableau
+\newcolumntype{C}{@{}c@{}}
+\newcommand{\bottombox}[1]{\makebox[2em][r]{#1}\hspace*{\tabcolsep}\hspace*{2em}}%
+\newcommand{\innerbox}[2]{%
+    \begin{tabular}[b]{c|c}
+       \rule{2em}{0pt}\rule[-2ex]{0pt}{5ex} & \makebox[0.9em]{\footnotesize{#2}} \\\cline{2-2}
+       \multicolumn{2}{r}{{#1}\hspace*{1.5\tabcolsep}\hspace*{2em}\rule[-2ex]{0pt}{5ex}}
+    \end{tabular}}
+\renewcommand{\arraystretch}{1.25}
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%  ПАРАМЕТРЫ  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setstretch{1}                          % Межстрочный интервал
@@ -1629,6 +1643,9 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
     \item метод северо-западного угла, northwest corner rule, \chinesetext{西北角法}, xīběi jiǎo fǎ;
     \item транспортная задача, transportation problem, \chinesetext{运输问题}, yùnshū wèntí;
   \end{itemize}
+  Если в сбалансированной транспортной задаче $m$ продавцов и $n$ покупателей, 
+  то количество базисных переменных равно $m + n - 1$. 
+  Базисные переменные должны соответствовать линейно независимым столбцам матрицы ограничений. 
 \end{leftbar}
 
 
@@ -1769,15 +1786,83 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
 
 
 \begin{problem}
-  Рассмотрим сбалансированную транспортную задачу, в которой 3 производителя и 3 потребителя. 
+В каждой транспортной таблицы выписано базисное допустимое решение. 
+Определите, какие переменные могут быть базисными, а какие — не могут быть базисными. 
   \begin{enumerate}
-    \item Сколько базисных и сколько свободных переменных в этой задаче?
-    \item Какие переменные можно выбрать базисными, если базисными уже являются $x_{11}$, $x_{21}$, $x_{23}$, $x_{33}$?
-    \item Какие переменные можно выбрать базисными, если базисными уже являются $x_{11}$, $x_{12}$, $x_{13}$, $x_{31}$?
-    \item Какие переменные можно выбрать базисными, если базисными уже являются $x_{11}$, $x_{13}$, $x_{21}$, $x_{31}$?
+    \item 
+    \begin{tabular}{c|c|c|c|}
+      &  &  &  \\ \hline
+     & 5 & $x_{12}$ & $x_{13}$ \\ \hline
+    & $x_{21}$ & 7 & 8 \\ \hline
+     & $x_{31}$ & $x_{32}$ & 3 \\ \hline
+    \end{tabular}
+
+    \item 
+    \begin{tabular}{c|c|c|c|}
+      &  &  &  \\ \hline
+     & 5 & $x_{12}$ & $x_{13}$ \\ \hline
+    & 3 & $x_{22}$ & 8 \\ \hline
+     & $x_{31}$ & $x_{32}$ & 3 \\ \hline
+    \end{tabular}
+
+    \item 
+    \begin{tabular}{c|c|c|c|}
+      &  &  &  \\ \hline
+     & 5 & $x_{12}$ & $x_{13}$ \\ \hline
+    & 3 & $x_{22}$ & $x_{23}$ \\ \hline
+     & $9$ & $x_{32}$ & 3 \\ \hline
+    \end{tabular}
+
+    \item 
+    \begin{tabular}{c|c|c|c|c|c|}
+      &  &  &  & & \\ \hline
+      & 5 & $x_{12}$ & 4 & $x_{34}$ & 7 \\ \hline
+      & 2 & $x_{22}$ & $x_{23}$ & 3 & $x_{25}$ \\ \hline
+     & $x_{31}$ & $x_{32}$ & 2 & $x_{34}$ & $x_{35}$ \\ \hline
+     & $x_{41}$ & 7 & $x_{43}$ & $x_{44}$ & $x_{45}$ \\ \hline
+    \end{tabular}
   \end{enumerate}
   \begin{sol}
+    Буквой «Б» отмечены переменные, которые обязательно являются базисными. 
+    Знаком «+» отмечены переменные, которые \textit{могут} быть базисными.
+    Знаком «—» отмечены переменные, которые \textit{не могут} быть базисными.
+
+    \begin{enumerate}
+      \item 
+      \begin{tabular}{c|c|c|c|}
+        &  &  &  \\ \hline
+       & Б & + & + \\ \hline
+      & + & Б & Б \\ \hline
+       & + & — & Б \\ \hline
+      \end{tabular}
   
+      \item 
+      \begin{tabular}{c|c|c|c|}
+        &  &  &  \\ \hline
+        & Б & + & — \\ \hline
+        & Б & + & Б \\ \hline
+         & — & + & Б \\ \hline
+        \end{tabular}
+  
+      \item 
+      \begin{tabular}{c|c|c|c|}
+        &  &  &  \\ \hline
+        & Б & + & — \\ \hline
+        & Б & + & — \\ \hline
+         & Б & + & Б \\ \hline
+        \end{tabular}
+  
+      \item 
+      \begin{tabular}{c|c|c|c|c|c|}
+        &  &  &  & & \\ \hline
+        & Б & + & Б & — & Б \\ \hline
+        & Б & + & — & Б & — \\ \hline
+        & — & + & Б & — & — \\ \hline
+        & + & Б & + & + & + \\ \hline  
+      \end{tabular}
+    \end{enumerate}
+  
+    
   \end{sol}
 \end{problem}
 
@@ -1785,9 +1870,26 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
 \begin{problem}
   
   \begin{sol}
-  
+\begin{tabular}{c|C|C|C|}
+      & $b_1 = 10$         & $b_2 = 20$             & $b_3 = 17$         \\\hline
+$a_1 = 5$ & \innerbox{}{12}   & \innerbox{}{10}   & \innerbox{600}{6}   \\\hline
+$a_2 = 6$ & \innerbox{400}{4} & \innerbox{}{15}   & \innerbox{}{3}       \\\hline
+$a_3 = 7$ & \innerbox{300}{9} & \innerbox{}{7}    & \innerbox{}{M}       \\\hline
+$a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
+\end{tabular}
+
   \end{sol}
 \end{problem}
+
+\section{Сети}
+
+
+\begin{problem}
+  
+  \begin{sol}
+  \end{sol}
+\end{problem}
+
 
 
 
