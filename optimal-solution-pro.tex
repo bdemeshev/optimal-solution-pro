@@ -1935,8 +1935,8 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
 
 \begin{tikzpicture}[node distance=2cm]
 
-  \node (start) [normal] {\shortstack{1. Стартовой вершине присваиваем $0$\\
-  остальным вершинам присваиваем $\infty$.}};
+  \node (start) [normal] {\shortstack{1. Стартовой вершине присваиваем $0$.\\
+  Остальным вершинам присваиваем $\infty$.}};
   \node (select) [normal, below of=start] {\shortstack{2. Выбираем непосещённую вершину $v$ \\ с минимальной стоимостью. }};
   \node (update) [normal, below of=select] {\shortstack{3. Исправляем стоимости соседей $v$. }};
   \node (mark) [normal, below of=update] {\shortstack{4. Отмечаем, что посетили $v$. }};
@@ -1994,7 +1994,7 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
   
   \begin{enumerate}
     \item С помощью алгоритма Дейкстры найдите найдите самые быстрые маршруты из вершины $A$ во все остальные вершины. 
-    \item Выпишите матрицу смежности для вершин $A$, $B$, $C$ и $D$.
+    \item Выпишите матрицу весов для куска графа из вершин $A$, $B$, $C$ и $D$.
   \end{enumerate}
   
   
@@ -2027,25 +2027,45 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
 \end{problem}
 
 \begin{problem}
-Матрица смежности взвешенного графа равна
+Матрица весов взвешенного графа равна
 \[
   M = \begin{pmatrix}
     \infty & 4 & \infty & 2 \\
     2 & \infty & 1 & \infty \\
     3 & 4 & \infty & 1 \\
     5 & 6 & \infty & \infty \\
-  \end{pmatrix}
+  \end{pmatrix}.
 \]
-\begin{enumerate}
-  \item Нарисуйте граф. 
-  \item Найдите матрицу $A = M^2$. Какой смысл у элемента $a_{23}$?
-  \item Найдите матрицу $B = M^3$. Какой смысл у элемента $b_{23}$?
-\end{enumerate}
+
+Нарисуйте граф. 
 
 \begin{sol}
 \end{sol}
 \end{problem}
 
+
+\begin{problem}
+  Матрица смежности графа равна
+  \[
+    M = \begin{pmatrix}
+      0 & 0 & 1 & 1 \\
+      0 & 0 & 1 & 0 \\
+      1 & 1 & 0 & 1 \\
+      1 & 0 & 1 & 0 \\
+    \end{pmatrix}.
+  \]
+  
+  \begin{enumerate}
+    \item  Нарисуйте граф. 
+    \item Найдите матрицу $A = M^2$. Какой смысл у элемента $a_{31}$?
+    \item Найдите матрицу $B = B^3$. Какой смысл у элемента $b_{33}$?
+  \end{enumerate}
+
+  
+  \begin{sol}
+  \end{sol}
+  \end{problem}
+  
 
 
 
