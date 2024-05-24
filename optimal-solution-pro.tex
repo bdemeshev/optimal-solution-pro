@@ -121,10 +121,31 @@
 
 \usepackage{tikz, pgfplots} % язык для рисования графики из latex'a
 \pgfplotsset{compat=1.16}
-\usetikzlibrary{trees} % tikz-прибамбас для рисовки деревьев
+% \usetikzlibrary{trees} % tikz-прибамбас для рисовки деревьев
 \usepackage{tikz-qtree} % альтернативный tikz-прибамбас для рисовки деревьев
 \usepackage{tkz-graph} % by dp for making prob trees
-\usetikzlibrary{arrows} % tikz-прибамбас для рисовки стрелочек подлиннее
+\usetikzlibrary{shapes.geometric, arrows, automata, trees} % tikz-прибамбас для рисовки стрелочек подлиннее
+
+
+
+\tikzstyle{normal} = [rectangle, 
+minimum width=3cm, 
+minimum height=1cm, 
+text centered, 
+draw=black, 
+fill=green!30]
+
+\tikzstyle{decision} = [rectangle, 
+minimum width=3cm, 
+minimum height=1cm, 
+text centered, 
+draw=black, 
+fill=green!30]
+
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+
+
 
 \usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
 % \todo{Здесь надо коэффициенты исправить}
@@ -1648,6 +1669,24 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
   Базисные переменные должны соответствовать линейно независимым столбцам матрицы ограничений. 
 \end{leftbar}
 
+Метод потенциалов, Hitchhock method, 
+
+\begin{tikzpicture}[node distance=2.3cm]
+
+  \node (start) [normal] {1. Берём базисное допустимое решение.};
+  \node (quest) [decision, below of=start] {\shortstack{2. Это оптимум? \\Базисная $x_{ij}$: $u_i + v_j = c_{ij}$ \\ Свободная $x_{ij}$: $u_i + v_j \leq c_{ij}$}};
+  
+  \node (end) [normal, right of=quest, xshift=4cm] {Ура!};
+  \node (update) [normal, below of=quest] {\shortstack{3. Корректируем на $\pm \varepsilon$  по цепочке. \\ Начинаем с любой $x_{ij}$, где $u_i + v_j > c_{ij}$. }};
+  
+  \draw [arrow] (start) -- (quest);
+  \draw [arrow] (quest) -- node[anchor=west] {нет} (update);
+  \draw [arrow] (quest) -- node[anchor=south] {да}  (end);
+  \draw [arrow] (update.west)  -|  ++(-1,0)  |-  (quest.west);
+  
+\end{tikzpicture}
+  
+
 
 \begin{problem}
   Рассмотрим сбалансированную транспортную задачу
@@ -1786,8 +1825,9 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
 
 
 \begin{problem}
-В каждой транспортной таблицы выписано базисное допустимое решение. 
-Определите, какие переменные могут быть базисными, а какие — не могут быть базисными. 
+В каждой транспортной таблице выписано базисное допустимое решение. 
+Определите, какие переменные должны быть базисными, какие должны быть свободными,
+а какие могут быть базисными или свободными.
   \begin{enumerate}
     \item 
     \begin{tabular}{c|c|c|c|}
@@ -1824,41 +1864,41 @@ $\min z$ & $-8$ & $0$ & $0$ & $-3$ & $-z-15$ \\
   \end{enumerate}
   \begin{sol}
     Буквой «Б» отмечены переменные, которые обязательно являются базисными. 
-    Знаком «+» отмечены переменные, которые \textit{могут} быть базисными.
-    Знаком «—» отмечены переменные, которые \textit{не могут} быть базисными.
+    Буквой «С» отмечены переменные, которые обязательно являются свободными.
+    Надписью «Б или С» отмечены переменные, которые могут быть базисными или свободными.
 
     \begin{enumerate}
       \item 
       \begin{tabular}{c|c|c|c|}
         &  &  &  \\ \hline
-       & Б & + & + \\ \hline
-      & + & Б & Б \\ \hline
-       & + & — & Б \\ \hline
+       & Б & Б или С & Б или С \\ \hline
+      & Б или С & Б & Б \\ \hline
+       & Б или С & С & Б \\ \hline
       \end{tabular}
   
       \item 
       \begin{tabular}{c|c|c|c|}
         &  &  &  \\ \hline
-        & Б & + & — \\ \hline
-        & Б & + & Б \\ \hline
-         & — & + & Б \\ \hline
+        & Б & Б или С & С \\ \hline
+        & Б & Б или С & Б \\ \hline
+         & С & Б или С & Б \\ \hline
         \end{tabular}
   
       \item 
       \begin{tabular}{c|c|c|c|}
         &  &  &  \\ \hline
-        & Б & + & — \\ \hline
-        & Б & + & — \\ \hline
-         & Б & + & Б \\ \hline
+        & Б & Б или С & C \\ \hline
+        & Б & Б или С & C \\ \hline
+         & Б & Б или С & Б \\ \hline
         \end{tabular}
   
       \item 
       \begin{tabular}{c|c|c|c|c|c|}
         &  &  &  & & \\ \hline
-        & Б & + & Б & — & Б \\ \hline
-        & Б & + & — & Б & — \\ \hline
-        & — & + & Б & — & — \\ \hline
-        & + & Б & + & + & + \\ \hline  
+        & Б & Б или С & Б & C & Б \\ \hline
+        & Б & Б или С & C & Б & C \\ \hline
+        & C & Б или С & Б & C & C \\ \hline
+        & Б или С & Б & Б или С & Б или С & Б или С \\ \hline  
       \end{tabular}
     \end{enumerate}
   
@@ -1884,10 +1924,126 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
 \section{Сети}
 
 
+
+
+
+
+
+
+
+Алгоритм Дейкстры (Dijkstra algorithm)
+
+\begin{tikzpicture}[node distance=2cm]
+
+  \node (start) [normal] {\shortstack{1. Стартовой вершине присваиваем $0$\\
+  остальным вершинам присваиваем $\infty$.}};
+  \node (select) [normal, below of=start] {\shortstack{2. Выбираем непосещённую вершину $v$ \\ с минимальной стоимостью. }};
+  \node (update) [normal, below of=select] {\shortstack{3. Исправляем стоимости соседей $v$. }};
+  \node (mark) [normal, below of=update] {\shortstack{4. Отмечаем, что посетили $v$. }};
+
+  \draw [arrow] (start) -- (select);
+  \draw [arrow] (select) --  (update);
+  \draw [arrow] (update) -- (mark);
+  \draw [arrow] (mark.west)  -| ++(-1.5,0)  |-  (select.west);
+  
+\end{tikzpicture}
+  
+
 \begin{problem}
+
+  На ребрах графа указано время в пути.
+  
+  \begin{tikzpicture}[>=stealth',shorten >=1pt,node distance=3cm,on grid,initial/.style    ={}]
+    \node[state]     (A)                        {$A$};
+    \node[state]     (B) [above right =of A]    {$B$};
+    \node[state]     (C) [below right =of A]    {$C$};
+    \node[state]     (D) [below right =of B]    {$D$};
+    \node[state]     (E) [above right =of D]    {$E$};
+    \node[state]     (F) [below right =of D]    {$F$};
+    \node[state]     (G) [above right =of F]    {$G$};
+    \node[state]     (H) [above right =of G]    {$H$};
+    \node[state]     (I) [below right =of G]    {$I$};
+    \node[state]     (J) [above right =of I]    {$J$};
+  
+  
+  \tikzset{mystyle/.style={->,double=orange}} 
+  \tikzset{every node/.style={fill=white}} 
+  \path (A)     edge [mystyle]    node   {$3$} (B)
+        (B)     edge [mystyle]    node   {$5$} (E)
+        (C)     edge [mystyle]    node   {$6$} (F)
+        (G)     edge [mystyle]    node   {$3$} (I)
+        (E)     edge [mystyle]    node   {$2$} (G)
+        (F)     edge [mystyle]    node   {$8$} (I)
+        (D)     edge [mystyle]    node   {$1$} (C)
+        (I)     edge [mystyle]    node   {$8$} (J)
+        (A)     edge [mystyle]    node   {$9$} (D);
+  \tikzset{mystyle/.style={<->,double=orange}}   
+  \path (A)     edge [mystyle]   node   {$2$} (C)
+        (B)     edge [mystyle]    node   {$3$} (D)
+        (D)     edge [mystyle]   node   {$4$} (E)
+        (G)     edge [mystyle]    node   {$7$} (H)
+        (F)     edge [mystyle]    node   {$2$} (D)
+        (H)     edge [mystyle]    node   {$4$} (J)
+        (D)     edge [mystyle]    node   {$8$} (G)
+        (E)     edge [mystyle]    node   {$7$} (H)
+        (H)     edge [mystyle]    node   {$1$} (I)
+        (F)     edge [mystyle]   node   {$4$} (G);
+  \tikzset{mystyle/.style={<->,relative=false,in=0,out=60,double=orange}}
+  % \path (F)     edge [mystyle]   node   {$10$} (E); 
+  \end{tikzpicture}
+  
+  \begin{enumerate}
+    \item С помощью алгоритма Дейкстры найдите найдите самые быстрые маршруты из вершины $A$ во все остальные вершины. 
+    \item Выпишите матрицу смежности для вершин $A$, $B$, $C$ и $D$.
+  \end{enumerate}
+  
   
   \begin{sol}
   \end{sol}
+  \end{problem}
+  
+
+
+\begin{problem}
+
+  С помощью алгоритма Дейкстры найдите кратчайшее расстояние из точки старта $S$ до каждой точки лабиринта. 
+
+  \begin{tikzpicture}
+    \draw[help lines] (0.5,0.5) grid (6.5,7.5);
+    \draw[] (1.5,1.5) node(s){$S$};
+    \draw[very thick] (1,1)--(1,2)--(2,2);
+    \draw[very thick] (4,6)--(5,6)--(5,7);
+    \draw[very thick] (3,2)--(4,2)--(4,1)--(5,1);
+    \draw[very thick] (1,4)--(1,5)--(2,5)--(2,4)--(2,3);
+    \draw[very thick] (2,7)--(2,6)--(3,6)--(3,5)--(3,4);
+    \draw[very thick] (3,3)--(4,3)--(4,4)--(5,4)--(5,3)--(6,3);
+    \draw[very thick] (3,5)--(4,5)--(5,5);
+    \draw[very thick] (3,2)--(4,2);
+    \draw[very thick] (1,1)--(6,1)--(6,7)--(1,7)--(1,1);
+  \end{tikzpicture}
+    
+  \begin{sol}
+  \end{sol}
+\end{problem}
+
+\begin{problem}
+Матрица смежности взвешенного графа равна
+\[
+  M = \begin{pmatrix}
+    \infty & 4 & \infty & 2 \\
+    2 & \infty & 1 & \infty \\
+    3 & 4 & \infty & 1 \\
+    5 & 6 & \infty & \infty \\
+  \end{pmatrix}
+\]
+\begin{enumerate}
+  \item Нарисуйте граф. 
+  \item Найдите матрицу $A = M^2$. Какой смысл у элемента $a_{23}$?
+  \item Найдите матрицу $B = M^3$. Какой смысл у элемента $b_{23}$?
+\end{enumerate}
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
 
