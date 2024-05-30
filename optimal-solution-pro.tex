@@ -2062,19 +2062,19 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
     \item Найдите матрицу $B = M^3$. Какой смысл у элемента $b_{31}$? Какой смысл у элемента $b_{32}$?
   \end{enumerate}
 
-  
-  \begin{sol}
-  \end{sol}
-  \end{problem}
-  
+
+\begin{sol}
+\end{sol}
+\end{problem}
+
 \subsection*{Задача о максимальном потоке и о минимальном разрезе}
 
 \begin{leftbar}
   \begin{itemize}
   \item пропускная способность, capacity, \chinesetext{大流量?};
   \item поток, flow, \chinesetext{流};
-  \item источник, source, \chinesetext{源点};
-  \item сток, sink, \chinesetext{汇点};
+  \item источник, source, \chinesetext{源};
+  \item сток, sink, \chinesetext{汇};
   \item разрез, cut, \chinesetext{割};
   \item бутылочное горлышко, bottleneck, \chinesetext{瓶颈};
   \item минимальный разрез, minimal cut, \chinesetext{最小割};
@@ -2101,7 +2101,7 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
 \end{tikzpicture}
   
 
-  \begin{problem}
+\begin{problem}
 
     На ребрах графа указаны текущий поток $f$ и пропускная способность $c$.
     Например, надпись $1/3$ над ребром означает, 
@@ -2133,19 +2133,19 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
     (c)     edge [mystyle]    node   {$1/1$} (d);
 \end{tikzpicture}
     
-    \begin{enumerate}
-      \item Найдите пропускную способность разреза $c(S, T)$ для $S = \{s, b, c\}$, $T = \{d, e, g, t\}$. 
-      \item Найдите пропускную способность разреза $c(S, T)$ для $S = \{s, b, g, e\}$, $T = \{c, d, t\}$. 
-      \item Найдите величину потока $v(f)$.
-      \item Найдите исходящий поток $f^{\text{out}}(S)$ и входящий поток $f^{\text{in}}{S}$ для множества $S = \{s, b, f, e\}$.
-      \item Найдите остаточную пропускную способность $\bneck(s- b- e- t, f)$.
-      \item Найдите остаточную пропускную способность $\bneck(s- d- c- g- t, f)$.      
-    \end{enumerate}
-    
-    \begin{sol}
-    \end{sol}
-    \end{problem}
-    
+\begin{enumerate}
+\item Найдите пропускную способность разреза $c(S, T)$ для $S = \{s, b, c\}$, $T = \{e, g, t\}$. 
+\item Найдите пропускную способность разреза $c(S, T)$ для $S = \{s, g, e\}$, $T = \{b, c, t\}$. 
+\item Найдите величину потока $v(f)$.
+\item Найдите исходящий поток $f^{\text{out}}(S)$ и входящий поток $f^{\text{in}}(S)$ для множества $S = \{s, b, f, e\}$.
+\item Найдите остаточную пропускную способность $\bneck(s- b- e- t, f)$.
+\item Найдите остаточную пропускную способность $\bneck(s- c- g- b- e- t, f)$.      
+\end{enumerate}
+
+\begin{sol}
+\end{sol}
+\end{problem}
+
 
     \begin{problem}
 
@@ -2179,18 +2179,18 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
   \end{enumerate}
   
 
-      \begin{sol}
-      \end{sol}
-      \end{problem}
-      
-    
+\begin{sol}
+\end{sol}
+\end{problem}
 
 
 
 
 
 
-    \begin{problem}
+
+
+\begin{problem}
 
       На ребрах графа с помощью $f/c$ указаны текущий поток $f$ и пропускная способность $c$.
     
@@ -2226,11 +2226,51 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
   \end{enumerate}
   
 
-      \begin{sol}
-      \end{sol}
-      \end{problem}
-      
-    
+\begin{sol}
+\end{sol}
+\end{problem}
+
+
+\begin{problem}
+
+Надпись $f/c$ на ребре означает текущий поток $f$ и пропускную способность $c$.
+
+\begin{tikzpicture}[>=stealth',shorten >=1pt,node distance=3cm,on grid,initial/.style    ={}]
+\node[state]     (s)                        {$s$};
+\node[state]     (b) [above right =of s]    {$b$};
+\node[state]     (c) [below right =of s]    {$c$};
+\node[state]     (e) [right =of b]    {$e$};
+\node[state]     (g) [right =of c]    {$g$};
+\node[state]     (t) [above right =of g]    {$t$};
+
+
+\tikzset{mystyle/.style={->,double=orange}} 
+\tikzset{every node/.style={fill=white}} 
+\path (s)     edge [mystyle]    node   {$8/10$} (b)
+(s)     edge [mystyle]    node   {$2/10$} (c)
+(b)     edge [mystyle]    node   {$8/8$} (g)
+(g)     edge [mystyle]    node   {$10/10$} (t)
+(b)     edge [mystyle]    node   {$0/4$} (e)
+(g)     edge [mystyle]    node   {$0/6$} (e)
+(c)     edge [mystyle]    node   {$2/9$} (g)
+(e)     edge [mystyle]    node   {$0/10$} (t)
+(b)     edge [mystyle]    node   {$0/3$} (c);
+\end{tikzpicture}
+
+\begin{enumerate}
+\item Найдите пропускную способность разреза $c(S, T)$ для $S = \{s, b, c\}$, $T = \{e, g, t\}$. 
+\item Найдите пропускную способность разреза $c(S, T)$ для $S = \{s, g, e\}$, $T = \{c, b, t\}$. 
+\item Найдите величину потока $v(f)$.
+\item Найдите исходящий поток $f^{\text{out}}(S)$ и входящий поток $f^{\text{in}}(S)$ для множества $S = \{s, c, g\}$.
+\item Найдите остаточную пропускную способность $\bneck(s- b- e- t, f)$.
+\item Найдите остаточную пропускную способность $\bneck(s- d- c- g- t, f)$.      
+\end{enumerate}
+
+
+\begin{sol}
+\end{sol}
+\end{problem}
+
 
 
 
