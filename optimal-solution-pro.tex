@@ -11,7 +11,7 @@
 % Вместо arara используем классический latexmk. 
 
 
-
+% TODO: по окончании курса переставить 6.8 между 6.5 и 6.6, тк 6.8 — это 6.5 с другими цифрами.
 
 
 %!TeX cleanPatterns = $OUTDIR/$JOB!($OUTEXT|.synctex.gz|.tex|.pdf), /$OUTDIR/_minted-$JOB/
@@ -162,7 +162,9 @@ fill=green!30]
 % 4. Не сокращайте .1 вместо 0.1
 % 5. Повторяющееся значение повторяйте, а не говорите "то же"
 
-%\usepackage{physics} % TODO: вымарать physics!
+%\usepackage{physics} % не рекомендуют его использовать
+% конфликтует много с кем, плохая реализация
+% https://tex.stackexchange.com/questions/471532/alternatives-to-the-physics-package
 \DeclareMathOperator{\bneck}{bneck}
 
 \usepackage{listings}
