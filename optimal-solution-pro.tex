@@ -2375,6 +2375,27 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
 
 \begin{problem}
 
+Рассмотрим следующий граф:
+
+\begin{tikzpicture}[>=stealth',shorten >=1pt,node distance=3cm,on grid,initial/.style    ={}]
+\node[state]     (a)                        {$a$};
+\node[state]     (b) [right =of a]    {$b$};
+\node[state]     (e) [below =of a]    {$e$};
+\node[state]     (d) [right =of e]    {$d$};
+\node[state]     (f) [right =of b]    {$f$};
+\node[state]     (c) [right =of d]    {$c$};
+
+\tikzset{mystyle/.style={-,double=orange}}
+\tikzset{every node/.style={fill=white}}
+\path (a)     edge [mystyle]    (b)
+(a)     edge [mystyle]     (e)
+(b)     edge [mystyle]     (c)
+(e)     edge [mystyle]     (d)
+(c)     edge [mystyle]     (d)
+(b)     edge [mystyle]     (f);
+\end{tikzpicture}
+
+
 \begin{enumerate}
  \item Найдите степень каждой вершины, $\deg(v)$.
  \item Найдите центральность каждой вершины по близости, $\closeness(v)$.
@@ -2394,16 +2415,16 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
 \begin{tikzpicture}[>=stealth',shorten >=1pt,node distance=3cm,on grid,initial/.style    ={}]
 \node[state]     (a)                        {$a$};
 \node[state]     (b) [right =of a]    {$b$};
-\node[state]     (c) [below =of a]    {$c$};
-\node[state]     (d) [right =of c]    {$d$};
+\node[state]     (d) [below =of a]    {$d$};
+\node[state]     (c) [right =of d]    {$c$};
 \node[state]     (f) [right =of b]    {$f$};
 
 \tikzset{mystyle/.style={-,double=orange}}
 \tikzset{every node/.style={fill=white}}
 \path (a)     edge [mystyle]    (b)
-(a)     edge [mystyle]     (c)
-(b)     edge [mystyle]     (d)
-(c)     edge [mystyle]     (d)
+(a)     edge [mystyle]     (d)
+(b)     edge [mystyle]     (c)
+(d)     edge [mystyle]     (c)
 (b)     edge [mystyle]     (f);
 \end{tikzpicture}
 
