@@ -2382,7 +2382,7 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
 \begin{leftbar}
  \begin{itemize}
   \item Степень вершины, degree of the vertex, $\deg(v)$.
-  \item Центральность по близости, closeness centrality,
+  \item Центральность по близости, closeness centrality, \chinesetext{}
   \[
     \closeness(v) = \frac{1}{\sum_x d(v, x)},
   \]
@@ -2460,6 +2460,17 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
 \end{enumerate}
 
 \begin{sol}
+  \begin{tabular}{lccc}
+  \toprule
+    вершина & $\deg()$ & $\closeness()$ & $\betweenness()$ \\
+  \midrule
+  $a$ & $2$ & $1/6$ & $1$ \\
+  $b$ & $3$ & $1/5$ & $7/2$ \\
+  $c$ & $2$ & $1/6$ & $1$ \\
+  $d$ & $2$ & $1/7$ & $1/2$ \\
+  $f$ & $1$ & $1/7$ & ... \\
+  \end{tabular}
+
 
 \end{sol}
 \end{problem}
@@ -2596,16 +2607,16 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
         (D)     edge [mystyle]    node   {$1$} (C)
         (I)     edge [mystyle]    node   {$8$} (J)
         (A)     edge [mystyle]    node   {$9$} (D);
-  \tikzset{mystyle/.style={<->,double=orange}}
+  \tikzset{mystyle/.style={->,double=orange}}
   \path (A)     edge [mystyle]   node   {$2$} (C)
         (B)     edge [mystyle]    node   {$3$} (D)
         (D)     edge [mystyle]   node   {$4$} (E)
         (G)     edge [mystyle]    node   {$7$} (H)
-        (F)     edge [mystyle]    node   {$2$} (D)
+        (D)     edge [mystyle]    node   {$2$} (F)
         (H)     edge [mystyle]    node   {$4$} (J)
         (D)     edge [mystyle]    node   {$8$} (G)
         (E)     edge [mystyle]    node   {$7$} (H)
-        (H)     edge [mystyle]    node   {$1$} (I)
+        (I)     edge [mystyle]    node   {$1$} (H)
         (F)     edge [mystyle]   node   {$4$} (G);
   % \tikzset{mystyle/.style={<->,relative=false,in=0,out=60,double=orange}}
   % \path (F)     edge [mystyle]   node   {$10$} (E);
