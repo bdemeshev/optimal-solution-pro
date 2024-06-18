@@ -2725,12 +2725,85 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
 \begin{problem}
 В самолёт можно загрузить контейнеры четырёх типов.
 Веса этих типов контейнеров равны $2$, $3$, $4$ и $6$ тонн,
-а ценности — $6$, $7$, $10$ и $17$ тысяч рублей, соответственно.
+а ценности — $5$, $7$, $11$ и $17$ тысяч рублей, соответственно.
 Грузоподъёмность самолёта — 15 тонн.
 
 Найдите оптимальную загрузку самолёта.
 \begin{sol}
 
+\end{sol}
+\end{problem}
+
+
+\begin{problem}
+В куче лежит 1234 камня.
+Бульбазавр и Пикачу берут камни из кучи по очереди.
+Пикачу берёт камень первым.
+Бульбазавр может взять 2 или 3 камня за один ход.
+Пикачу может взять 1 или 3 камня за один ход.
+
+Выигрывает игру тот, кто первым не сможет сделать ход по правилам.
+\begin{enumerate}
+ \item Сможет ли Пикачу выиграть?
+ \item Если Бульбазавр может выиграть, то какой первый ход ему нужно сделать?
+\end{enumerate}
+
+
+\begin{sol}
+\end{sol}
+\end{problem}
+
+
+
+\begin{problem}
+
+  На ребрах графа указано время в пути в часах.
+
+  \begin{tikzpicture}[>=stealth',shorten >=1pt,node distance=3cm,on grid,initial/.style    ={}]
+    \node[state]     (A)                        {$a$};
+    \node[state]     (B) [above right =of A]    {$b$};
+    \node[state]     (C) [below right =of A]    {$c$};
+    \node[state]     (D) [below right =of B]    {$d$};
+    \node[state]     (E) [above right =of D]    {$e$};
+    \node[state]     (F) [below right =of D]    {$f$};
+    \node[state]     (G) [above right =of F]    {$g$};
+    \node[state]     (H) [above right =of G]    {$h$};
+    \node[state]     (I) [below right =of G]    {$i$};
+    \node[state]     (J) [above right =of I]    {$j$};
+
+
+  \tikzset{mystyle/.style={->,double=orange}}
+  \tikzset{every node/.style={fill=white}}
+  \path (A)     edge [mystyle]    node   {$4$} (B)
+        (B)     edge [mystyle]    node   {$4$} (E)
+        (C)     edge [mystyle]    node   {$5$} (F)
+        (G)     edge [mystyle]    node   {$6$} (I)
+        (E)     edge [mystyle]    node   {$3$} (G)
+        (F)     edge [mystyle]    node   {$7$} (I)
+        (C)     edge [mystyle]    node   {$2$} (D)
+        (I)     edge [mystyle]    node   {$6$} (J)
+        (A)     edge [mystyle]    node   {$8$} (D);
+  \tikzset{mystyle/.style={->,double=orange}}
+  \path (A)     edge [mystyle]   node   {$3$} (C)
+        (B)     edge [mystyle]    node   {$2$} (D)
+        (D)     edge [mystyle]   node   {$5$} (E)
+        (G)     edge [mystyle]    node   {$6$} (H)
+        (F)     edge [mystyle]    node   {$3$} (D)
+        (H)     edge [mystyle]    node   {$2$} (J)
+        (D)     edge [mystyle]    node   {$7$} (G)
+        (E)     edge [mystyle]    node   {$6$} (H)
+        (H)     edge [mystyle]    node   {$2$} (I)
+        (F)     edge [mystyle]   node   {$5$} (G);
+  % \tikzset{mystyle/.style={<->,relative=false,in=0,out=60,double=orange}}
+  % \path (F)     edge [mystyle]   node   {$10$} (E);
+  \end{tikzpicture}
+
+  \begin{enumerate}
+   \item С помощью метода обратной индукции найдите самые быстрые маршруты в вершину $j$ из вершин $a$, $b$ и $c$.
+   \item С помощью метода обратной индукции найдите самые медленные маршруты в вершину $j$ из вершин $a$, $b$ и $c$.
+  \end{enumerate}
+
+\begin{sol}
 \end{sol}
 \end{problem}
 
