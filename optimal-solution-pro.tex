@@ -127,6 +127,55 @@ citecolor=blue, hyperindex, breaklinks]{hyperref}
 \usepackage{tikz-qtree} % альтернативный tikz-прибамбас для рисовки деревьев
 \usepackage{tkz-graph} % by dp for making prob trees
 \usetikzlibrary{shapes.geometric, arrows, automata, trees} % tikz-прибамбас для рисовки стрелочек подлиннее
+\usepackage{color}
+
+% circled text in math mode
+% https://tex.stackexchange.com/questions/67127/creating-a-circled-operator-which-expands-into-a-lozenge
+\makeatletter
+\newcommand*\comp[2][]{%
+  \ensuremath{%
+    \mathbin{%
+      \mathpalette{\comp@aux{#1}}{#2}%
+    }%
+  }%
+}
+\newdimen\comp@unit
+\newcommand*{\comp@aux}[3]{%
+  #2%
+  \mskip.5\thinmuskip\nonscript\mskip-.25\thinmuskip
+  \begingroup
+    \sbox0{%
+      $%
+        \m@th % \mathsurround=0pt
+        #2% \displaystyle, \textstyle, ...
+        \mkern9mu %
+      $%
+    }%
+  \edef\x{\endgroup
+    \comp@unit=\the\wd0 %
+  }\x
+  \tikz[baseline=(char.base)]{%
+    \node[
+      rectangle,
+      draw,
+      minimum height=2\comp@unit,
+      minimum width=2\comp@unit,
+      rounded corners=\comp@unit,
+      inner sep=.33\comp@unit,
+      line width=.05\comp@unit,
+      #1%
+    ] (char) {%
+      $%
+        \m@th % \mathsurround=0pt
+        #2% \displaystyle, \textstyle, ...
+        \rule{0pt}{\comp@unit}%
+        #3%
+      $%
+    };%
+  }%
+  \mskip.5\thinmuskip\nonscript\mskip-.25\thinmuskip
+}
+\makeatother
 
 
 
@@ -2603,7 +2652,7 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
 
 \begin{leftbar}
 \begin{itemize}
- \item Принцип Беллмана, Bellman principle,
+ \item Уравнение Беллмана, Bellman equation,
 \item Метод обратной индукции, backward induction, \chinesetext{逆向归纳法}, nìxiàng guīnà fǎ;
 \end{itemize}
 \end{leftbar}
@@ -2714,7 +2763,7 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
 \begin{problem}
 В самолёт можно загрузить контейнеры четырёх типов.
 Веса этих типов контейнеров равны $2$, $3$, $5$ и $6$ тонн,
-а ценности — $5$, $6$, $13$ и $16$ тысяч рублей, соответственно.
+а прибыль за их перевозку — $5$, $6$, $13$ и $16$ тысяч рублей, соответственно.
 Грузоподъёмность самолёта — 14 тонн.
 
 Найдите оптимальную загрузку самолёта.
@@ -2728,7 +2777,7 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
 \begin{problem}
 В самолёт можно загрузить контейнеры четырёх типов.
 Веса этих типов контейнеров равны $2$, $3$, $4$ и $6$ тонн,
-а ценности — $5$, $7$, $11$ и $17$ тысяч рублей, соответственно.
+а прибыль за их перевозку — $5$, $7$, $11$ и $17$ тысяч рублей, соответственно.
 Грузоподъёмность самолёта — 15 тонн.
 
 Найдите оптимальную загрузку самолёта.
@@ -2809,6 +2858,178 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
 \begin{sol}
 \end{sol}
 \end{problem}
+
+
+
+\begin{problem}
+Рассмотрим марковский процесс принятия решений, начинающийся в состоянии $\comp{s}$.
+
+\begin{tabular}{cccc}
+\toprule
+состояние & действие & выигрыш $u_t$ & переход \\
+\midrule
+$\comp{s}$ & $a$ & $5$ & $\comp{s}$ \\
+$\comp{s}$ & $b$ & $1$ & $0.8 \comp{t} + 0.2 \comp{s}$ \\
+$\comp{t}$ & $c$ & $3$ & $0.7 \comp{t} + 0.3 \comp{s}$ \\
+\bottomrule
+\end{tabular}
+
+Запись $0.7 \comp{t} + 0.3 \comp{s}$ означает,
+что с вероятностью $0.7$ мы переходим в состояние $\comp{t}$,
+а с вероятностью $0.3$ переходим в состояние $\comp{s}$.
+
+% TODO: выигрыш можно не писать разный по разным переходам, а сразу использовать ожидание,
+% возможно, стоит задачу на эту тему придумать
+
+\begin{enumerate}
+ \item Определите оптимальный выбор для трёх периодов без дисконтирования,
+ \[
+  u = u_1 + u_2 + u_3.
+ \]
+ \item Определите оптимальный выбор для четырёх периодов с дисконт-фактором $0.5$,
+ \[
+  u = u_1 + 0.5 u_2 + 0.5^2 u_3 + 0.5^3 u_4.
+ \]
+ \item Определите оптимальный выбор для бесконечного количества периодов с дисконт-фактором $0.2$,
+ \[
+ u = \sum_{t=1}^{\infty} 0.2^{t-1} u_t.
+ \]
+\end{enumerate}
+
+\begin{sol}
+
+\end{sol}
+\end{problem}
+
+
+
+\begin{problem}
+Рассмотрим марковский процесс принятия решений, начинающийся в состоянии $\comp{s}$.
+
+\begin{tabular}{cccc}
+\toprule
+состояние & действие & выигрыш $u_t$ & переход \\
+\midrule
+$\comp{s}$ & $a$ & $5$ & $\comp{s}$ \\
+$\comp{s}$ & $b$ & $1$ & $0.8 \comp{t} + 0.2 \comp{s}$ \\
+$\comp{t}$ & $c$ & $3$ & $0.7 \comp{t} + 0.3 \comp{s}$ \\
+$\comp{t}$ & $d$ & $2$ & $0.5 \comp{t} + 0.5 \comp{s}$ \\
+\bottomrule
+\end{tabular}
+
+Запись $0.7 \comp{t} + 0.3 \comp{s}$ означает,
+что с вероятностью $0.7$ мы переходим в состояние $\comp{t}$,
+а с вероятностью $0.3$ переходим в состояние $\comp{s}$.
+
+% TODO: выигрыш можно не писать разный по разным переходам, а сразу использовать ожидание,
+% возможно, стоит задачу на эту тему придумать
+
+\begin{enumerate}
+ \item Определите оптимальный выбор для трёх периодов без дисконтирования,
+ \[
+  u = u_1 + u_2 + u_3.
+ \]
+ \item Определите оптимальный выбор для четырёх периодов с дисконт-фактором $0.5$,
+ \[
+  u = u_1 + 0.5 u_2 + 0.5^2 u_3 + 0.5^3 u_4.
+ \]
+ \item Определите оптимальный выбор для бесконечного количества периодов с дисконт-фактором $0.2$,
+ \[
+ u = \sum_{t=1}^{\infty} 0.2^{t-1} u_t.
+ \]
+\end{enumerate}
+
+\begin{sol}
+
+\end{sol}
+\end{problem}
+
+
+
+
+
+\begin{problem}
+У кота есть стартовый запас рыбы $y_1 \in [0;1]$.
+В момент времени $t$ кот может выловить количество рыбы $x_t \in [0; y_t]$.
+Мгновенная удовольствие кота равно $u_t = \ln x_t$.
+Оставшаяся невыловленная рыба размножается согласно правилу $y_{t+1} = (y_t - x_t)^{0.5}$.
+
+\begin{enumerate}
+ \item Определите оптимальное поведение кота для трёх периодов без дисконтирования,
+ \[
+  u = u_1 + u_2 + u_3.
+ \]
+ \item Определите оптимальное поведение кота  для четырёх периодов с дисконт-фактором $0.5$,
+ \[
+  u = u_1 + 0.5 u_2 + 0.5^2 u_3 + 0.5^3 u_4.
+ \]
+ \item Определите оптимальное поведение кота для бесконечного количества периодов с дисконт-фактором $0.2$,
+ \[
+ u = \sum_{t=1}^{\infty} 0.2^{t-1} u_t.
+ \]
+ Подсказка: можно предположить, что функция ценности имеет вид $V(y) = a + b \ln y$.
+\end{enumerate}
+
+
+\begin{sol}
+
+\end{sol}
+\end{problem}
+
+
+
+\begin{problem}
+У Пикачу есть стартовый капитал $y_1 \geq 0$.
+В момент времени $t$ Пикачу может потратить $x_t \in [0; y_t]$ на удовольствия.
+Мгновенное удовольствие Пикачу равно $u_t = \sqrt{x_t}$.
+Оставшийся капитал можно положить под процентную ставку $5\%$ до следующего периода, $y_{t+1} = 1.05 \cdot (y_t - x_t)$.
+
+\begin{enumerate}
+ \item Определите оптимальное поведение Пикачу для трёх периодов без дисконтирования,
+ \[
+  u = u_1 + u_2 + u_3.
+ \]
+ \item Определите оптимальное поведение Пикачу для четырёх периодов с дисконт-фактором $0.5$,
+ \[
+  u = u_1 + 0.5 u_2 + 0.5^2 u_3 + 0.5^3 u_4.
+ \]
+ \item Определите оптимальное поведение Пикачу для бесконечного количества периодов с дисконт-фактором $0.7$,
+ \[
+ u = \sum_{t=1}^{\infty} 0.7^{t-1} u_t.
+ \]
+\end{enumerate}
+
+
+\begin{sol}
+
+\end{sol}
+\end{problem}
+
+
+
+\begin{problem}
+
+
+\begin{sol}
+
+\end{sol}
+\end{problem}
+
+
+
+\begin{problem}
+
+
+\begin{sol}
+
+\end{sol}
+\end{problem}
+
+
+
+
+
+
 
 
 
