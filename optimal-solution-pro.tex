@@ -2028,21 +2028,24 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
 
 \subsection*{Алгоритм Дейкстры, Dijkstra algorithm}
 
-\begin{tikzpicture}[node distance=2cm]
-
-  \node (start) [normal] {\shortstack{1. Стартовой вершине присваиваем $0$.\\
-  Остальным вершинам присваиваем $\infty$.}};
-  \node (select) [normal, below of=start] {\shortstack{2. Выбираем непосещённую вершину $v$ \\ с минимальной стоимостью. }};
-  \node (update) [normal, below of=select] {\shortstack{3. Исправляем стоимости соседей $v$. }};
-  \node (mark) [normal, below of=update] {\shortstack{4. Отмечаем, что посетили $v$. }};
-
-  \draw [arrow] (start) -- (select);
-  \draw [arrow] (select) --  (update);
-  \draw [arrow] (update) -- (mark);
-  \draw [arrow] (mark.west)  -| ++(-1.5,0)  |-  (select.west);
   
-\end{tikzpicture}
+\begin{minipage}{\textwidth}
+  \includegraphics[height=5cm]{bus-with-passenger.jpg}  
+  \begin{tikzpicture}[node distance=2cm]
+
+    \node (start) [normal] {\shortstack{1. Стартовой вершине присваиваем $0$.\\
+    Остальным вершинам присваиваем $\infty$.}};
+    \node (select) [normal, below of=start] {\shortstack{2. Выбираем непосещённую вершину $v$ \\ с минимальной стоимостью. }};
+    \node (update) [normal, below of=select] {\shortstack{3. Исправляем стоимости соседей $v$. }};
+    \node (mark) [normal, below of=update] {\shortstack{4. Отмечаем, что посетили $v$. }};
   
+    \draw [arrow] (start) -- (select);
+    \draw [arrow] (select) --  (update);
+    \draw [arrow] (update) -- (mark);
+    \draw [arrow] (mark.west)  -| ++(-1.5,0)  |-  (select.west);
+    
+  \end{tikzpicture}
+\end{minipage}
 
 \begin{problem}
 
@@ -2362,6 +2365,18 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
     (b)     edge [mystyle]    node   {$0/3$} (c);
 \end{tikzpicture}  
     \item $\min c(S, T) = 19$, $S = \{ s, c\}$, $T = \{ b, g, e, t\}$.
+    \item 
+    \[
+    \begin{cases}
+      x_{sb} + x_{sc}  \to \max \\
+      \text{все } x_{ij} \geq 0 \\
+      x_{sb} \leq 10, x_{sc} \leq 10, x_{bc} \leq 3, x_{be} \leq 4, x_{bg} \leq 8 \\
+      x_{et} \leq 10, x_{ge} \leq 6, x_{gt} \leq 10, x_{cg} \leq 9 \\
+      x_{sb} = x_{bc} + x_{bg} + x_{be},  x_{sc} + x_{bc} = x_{cg} \\
+      x_{bg} + x_{cg} = x_{gt} + x_{gt}, x_{be} + x_{ge} = x_{et}
+    \end{cases}
+    \]
+    
   \end{enumerate}
 \end{sol}
 \end{problem}
@@ -2687,6 +2702,9 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
 
 \section{Динамическое программирование}
 
+\begin{minipage}{\textwidth}
+  \includegraphics[height=5cm]{panda-heart.jpg}  
+\end{minipage}
 
 \begin{leftbar}
 \begin{itemize}
@@ -2747,6 +2765,48 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
 
 
   \begin{sol}
+
+    \begin{tikzpicture}[>=stealth',shorten >=1pt,node distance=3cm,on grid,initial/.style    ={}]
+      \node[state]     (A)                        {$a, 18$};
+      \node[state]     (B) [above right =of A]    {$b, 15$};
+      \node[state]     (C) [below right =of A]    {$c, 18$};
+      \node[state]     (D) [below right =of B]    {$d, 14$};
+      \node[state]     (E) [above right =of D]    {$e, 10$};
+      \node[state]     (F) [below right =of D]    {$f, 12$};
+      \node[state]     (G) [above right =of F]    {$g, 8$};
+      \node[state]     (H) [above right =of G]    {$h, 4$};
+      \node[state]     (I) [below right =of G]    {$i, 5$};
+      \node[state]     (J) [above right =of I]    {$j, 0$};
+  
+  
+    \tikzset{mystyle/.style={->, double distance=3pt}}
+    \tikzset{every node/.style={fill=white}}
+    \path (A)     edge [mystyle]    node   {$3$} (B)
+          (B)     edge [mystyle]    node   {$5$} (E)
+          (C)     edge [mystyle]    node   {$6$} (F)
+          (G)     edge [mystyle]    node   {$3$} (I)
+          (E)     edge [mystyle]    node   {$2$} (G)
+          (D)     edge [mystyle]   node   {$4$} (E)
+          (D)     edge [mystyle]    node   {$2$} (F)
+          (H)     edge [mystyle]    node   {$4$} (J)
+          (I)     edge [mystyle]    node   {$1$} (H)
+          (F)     edge [mystyle]   node   {$4$} (G);
+    \tikzset{mystyle/.style={->,double=orange}}
+    \path (A)     edge [mystyle]   node   {$2$} (C)
+          (B)     edge [mystyle]    node   {$3$} (D)
+          (G)     edge [mystyle]    node   {$7$} (H)
+          (D)     edge [mystyle]    node   {$1$} (C)
+          (F)     edge [mystyle]    node   {$8$} (I)
+          (D)     edge [mystyle]    node   {$8$} (G)
+          (E)     edge [mystyle]    node   {$7$} (H)
+          (I)     edge [mystyle]    node   {$8$} (J)
+          (A)     edge [mystyle]    node   {$9$} (D);
+    % \tikzset{mystyle/.style={<->,relative=false,in=0,out=60,double=orange}}
+    % \path (F)     edge [mystyle]   node   {$10$} (E);
+    \end{tikzpicture}
+  
+
+
   \begin{enumerate}
    \item $a \to b \to e \to g \to i \to h \to j$: 18 часов,  $b \to e \to g \to i \to h \to j$: 15 часов, $c \to f \to g \to i \to h \to j$: 18 часов.
    \item $a \to d \to c \to f \to i \to j$: 32 часа, $b \to d \to c \to f \to i \to j$: 26 часов, $c \to f \to i \to j$: 22 часа.
@@ -2771,6 +2831,23 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
 
 
 \begin{sol}
+
+  \begin{tabular}{cccccccccccccccc}
+    \toprule
+    $n$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$ & $9$ & $10$ & $11$ & $12$ & $\cdots$ & $2024$\\
+    Бульбазавр & $-$ & $-$ & $+$ & $+$ & $-$ & $+$ & $-$ & $-$ & $+$ & $+$ & $-$ & $+$ & $-$ & $\cdots$ & $+$ \\
+    Пикачу & $-$ & $+$ & $+$ & $+$ & $+$ & $+$ & $-$ & $+$ & $+$ & $+$ & $+$ & $+$ & $-$ & $\cdots$ & $+$ \\
+  \bottomrule
+  \end{tabular}
+  
+
+  Видим цикл с периодом $T = 6$, $2024 = 337 \cdot 6  + 2$.
+
+  \begin{enumerate}
+    \item Да, Бульбазавр может выиграть.
+    \item На первом ходе Бульбазавру нужно взять 2 камня.
+  \end{enumerate}
+  
 \end{sol}
 \end{problem}
 
@@ -2791,6 +2868,20 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
 
 
 \begin{sol}
+
+  \begin{tabular}{cccccccccccccc}
+    \toprule
+    $n$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$ & $9$ & $10$ & $\cdots$ & $1000$\\
+    Бульбазавр & $-$ & $+$ & $+$ & $+$ & $+$ & $+$ & $+$ & $+$ & $+$ & $+$ & $+$ & $\cdots$ & $+$ \\
+    Пикачу & $-$ & $+$ & $-$ & $+$ & $-$ & $-$ & $-$ & $-$ & $-$ & $-$ & $-$ & $\cdots$ & $-$ \\
+  \bottomrule
+  \end{tabular}
+  
+  \begin{enumerate}
+    \item Да, Бульбазавр может выиграть.
+    \item На первом ходе Бульбазавр может взять 1, 2 или 4 камня.
+  \end{enumerate}
+  
 \end{sol}
 \end{problem}
 
@@ -2806,6 +2897,31 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
 
 Найдите оптимальную загрузку самолёта.
 \begin{sol}
+
+\begin{tiny}
+  \begin{tabular}{cccccccccccccccc}
+  \toprule
+  Грузоподъёмность & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$ & $9$ & $10$ & $11$ & $12$ & $13$ & $14$ \\
+  \midrule
+  $A$ & $0$ & $0$ & $5$ & $5$ & $10$ & $10$ & $15$ & $15$ & $20$ & $20$ & $25$ & $25$ & $30$ & $30$ & $35$  \\
+  $A$, $B$ & $0$ & $0$ & $5$ & $6/5$ & $6/10$ & $11/10$ & $12/15$ & $16/15$ & $17/20$ & $21/20$ & $22/25$ & $26/25$ & $27/30$ & $31/30$ & $32/35$ \\
+  $A$, $B$, $C$ & $0$ & $0$ & $5$ & $6$ & $10$ & $13/11$ & $13/15$ & $18/16$ & $19/20$ & $23/21$ & $26/25$ & $28/30$ & $31/30$ & $33/31$ & $36/35$ \\
+  $A$, $B$, $C$, $D$ & $0$ & $0$ & $5$ & $6$ & $10$ & $13$ & $16/15$ & $16/18$ & $21/20$ & $22/23$ & $26/26$ & $29/28$ & $32/31$ & $34/33$ & $37/36$ \\
+  \bottomrule
+\end{tabular}
+\end{tiny}
+
+Рекуррентные уравнения:
+\[
+\begin{cases}
+  \phi_A(w) = \max\{0, \phi_A(w-2) + 5\} \\
+  \phi_{AB}(w) = \max\{0, \phi_{AB}(w-3) + 6\} \\
+  \phi_{ABC}(w) = \max\{0, \phi_{ABC}(w-5) + 13\} \\
+  \phi_{ABCD}(w) = \max\{0, \phi_{ABCD}(w-6) + 16\} \\
+\end{cases}
+\]
+
+Оптимальный набор: $A$, $D$, $D$, прибыль — $37$. 
 
 \end{sol}
 \end{problem}
@@ -2840,6 +2956,19 @@ $a_4 = 5$ & \innerbox{}{11}   & \innerbox{500}{8} & \innerbox{300}{6}   \\\hline
 
 
 \begin{sol}
+
+\begin{tabular}{cccccccccccccc}
+  \toprule
+  $n$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$ & $9$ & $10$ & $\cdots$ & $1234$\\
+  Бульбазавр & $+$ & $+$ & $-$ & $+$ & $+$ & $+$ & $+$ & $+$ & $+$ & $+$ & $+$ & $\cdots$ & $+$ \\
+  Пикачу & $+$ & $-$ & $-$ & $+$ & $-$ & $+$ & $-$ & $-$ & $-$ & $-$ & $-$ & $\cdots$ & $-$ \\
+\bottomrule
+\end{tabular}
+
+\begin{enumerate}
+  \item Нет, при любом первом ходе Пикачу выигрывает Бульбазавр. 
+  \item Вне зависимости от первого хода Пикачу Бульбазавр может взять 2 или 3 камня.
+\end{enumerate}
 \end{sol}
 \end{problem}
 
