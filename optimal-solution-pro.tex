@@ -29,6 +29,7 @@
 \usepackage{comment}
 
 \usepackage{fontspec} % что-то про шрифты? % нужно ли загружать?
+\usepackage{libertine}
 
 \usepackage{polyglossia} % русификация xelatex
 \usepackage{csquotes}
@@ -40,10 +41,10 @@
 
 % download "Linux Libertine" fonts:
 % http://www.linuxlibertine.org/index.php?id=91&L=1
-\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% \setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
 % why do we need \newfontfamily:
 % http://tex.stackexchange.com/questions/91507/
-\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+% \newfontfamily{\cyrillicfonttt}{Linux Libertine O}
 
 \newfontfamily\arabicfont[Script=Arabic]{Scheherazade New}
 
@@ -3130,9 +3131,9 @@ $\comp{t}$ & $d$ & $2$ & $0.5 \comp{t} + 0.5 \comp{s}$ \\
  \]
  \item Определите оптимальное поведение кота для бесконечного количества периодов с дисконт-фактором $0.2$,
  \[
- V_1 = \sum_{t=1}^{\infty} 0.2^{t-1} u_t.
+ V_1 = \sum_{t=1}^{\infty} 0.2^{t-1} u_t \to \max.
  \]
- Подсказка: можно предположить, что функция ценности имеет вид $V(y) = a + b \ln y$.
+ Подсказка: можно предположить, что функция ценности имеет вид $V_t(y) = a + b \ln y$.
 
   \item Определите оптимальное поведение кота для бесконечного количества периодов и максимизации долгосрочного среднего,
  \[
@@ -3186,7 +3187,7 @@ $\comp{t}$ & $d$ & $2$ & $0.5 \comp{t} + 0.5 \comp{s}$ \\
  \[
  V_1 = \sum_{t=1}^{\infty} 0.7^{t-1} u_t \to \max.
  \]
- Подсказка: можно предположить, что функция ценности имеет вид $V(y) = a \sqrt{y}$.
+ Подсказка: можно предположить, что функция ценности имеет вид $V_t(y_t) = a \sqrt{y_t}$.
  \item Определите оптимальное поведение Пикачу для бесконечного количества периодов и максимизации долгосрочного среднего,
  \[
  V_1 = \lim_{T\to\infty} \sum_{t=1}^{T} u_t / T \to \max.
@@ -3240,7 +3241,7 @@ $\comp{t}$ & $d$ & $2$ & $0.5 \comp{t} + 0.5 \comp{s}$ \\
  \[
  V_1 = \sum_{t=1}^{\infty} 0.1^{t-1} u_t.
  \]
- Подсказка: можно предположить, что функция ценности имеет вид $V(y) = a + b \ln y$.
+ Подсказка: можно предположить, что функция ценности имеет вид $V_t(y_t) = a + b \ln y_t$.
 
   \item Определите оптимальное поведение кота для бесконечного количества периодов и максимизации долгосрочного среднего,
  \[
@@ -3251,7 +3252,23 @@ $\comp{t}$ & $d$ & $2$ & $0.5 \comp{t} + 0.5 \comp{s}$ \\
 
 
 \begin{sol}
+\begin{enumerate}
+  \item 
+  \item 
+  \item Уравнение Беллмана
+  \[
+  V_1(y_1) = \max_{x_1} \{ u_1 + 0.1 V_2(y_2)\}.
+  \]
+  В данном случае
+  \[
+  a + b\ln y_1 = \max_{x_1} \{ 1 + \ln x_1 + 0.1 + 0.02b \ln(y_1 - x_1) \}.
+  \]
+  Оптимальное потребление $x_1 = y_1 /( 1+ 0.02b)$.
 
+  Решаем уравнение на $b$: $0.02b + 1 = b$. Отсюда, $b= 50/49$ и $x_t^* = (49/50)y_t$.
+
+  \item 
+\end{enumerate}
 \end{sol}
 \end{problem}
 
