@@ -29,6 +29,7 @@
 \usepackage{comment}
 
 \usepackage{fontspec} % что-то про шрифты? % нужно ли загружать?
+\usepackage{libertine}
 
 \usepackage{polyglossia} % русификация xelatex
 \usepackage{csquotes}
@@ -40,10 +41,10 @@
 
 % download "Linux Libertine" fonts:
 % http://www.linuxlibertine.org/index.php?id=91&L=1
-\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% \setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
 % why do we need \newfontfamily:
 % http://tex.stackexchange.com/questions/91507/
-\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+% \newfontfamily{\cyrillicfonttt}{Linux Libertine O}
 
 \newfontfamily\arabicfont[Script=Arabic]{Scheherazade New}
 
@@ -404,9 +405,10 @@ keywordstyle=\fontfamily{lmtt}\bfseries
 \DeclareMathOperator{\betweenness}{betweenness}
 
 
-\newcommand{\chinesetext}[1]{\setmainfont{Source Han Sans CN}
+\newcommand{\chinesetext}[1]{ \setmainfont{Source Han Sans CN}
 #1
-\setmainfont{Linux Libertine O}}
+\setmainfont{Linux Libertine}
+}
 
 
 
@@ -3279,17 +3281,17 @@ $\comp{t}$ & $d$ & $2$ & $0.5 \comp{t} + 0.5 \comp{s}$ \\
 
 
 \begin{problem}
-Каждый день модница Максима примеряет новое платье и узнает величину $X_t$ — потенциальную радость от покупки этого платья. 
+Каждый день Василиса Прекрасная примеряет новое платьюшко и узнает величину $X_t$ — потенциальную радость от покупки этого платьюшка. 
 Величины $X_t$ независимы и равномерно распределены на $[0;1]$.
-Узнав $X_t$ Максима решает, покупать ли новое платье. 
-Вернуться к предыдущему примеренному платью нельзя. 
-Пока платье не куплено, Максима испытывает ежедневные страдания в размере $-0.2$. 
-Радость $X_t$ от покупки платья длится всего один день, в последующие дни Максима с платьем получает нулевую полезность. 
+Узнав $X_t$ Василиса решает, покупать ли новое платьюшко. 
+Вернуться к предыдущему примеренному платьюшку нельзя. 
+Пока платьюшко не куплено, Василиса испытывает ежедневные страдания в размере $0.05$. 
+Радость $X_t$ от покупки платьюшка длится всего один день, в последующие дни Василиса с платьюшком получает нулевую полезность. 
 
 \begin{enumerate}
-   \item Какова оптимальная стратегия, если время поисков платья не ограничено и Максима одинаково ценит все моменты времени?
-   \item Какова оптимальная стратегия, если на поиск платья в Париже у неё есть всего четыре дня, и Максима одинаково ценит все моменты времени?
-   \item Какова оптимальная стратегия, если время поисков платья не ограничено и Максима дисконтирует полезность с коэффициентом $0.7$?
+   \item Какова оптимальная стратегия, если время поисков не ограничено и Василиса одинаково ценит все моменты времени?
+   \item Какова оптимальная стратегия, если на поиск платья в Париже у неё есть всего четыре дня, и Василиса одинаково ценит все моменты времени?
+   \item Какова оптимальная стратегия, если время поисков не ограничено и Максима дисконтирует полезность с коэффициентом $0.7$?
 \end{enumerate}
   
 \begin{sol}
